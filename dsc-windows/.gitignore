@@ -1,0 +1,8 @@
+CIS_WindowsServer2016_v110/*
+CIS_WindowsServer2019_v110/*
+AuditPolicy_WindowsServer2016/*
+win2016_secureconfig/*
+posh-dsc-win2016-secureconfig/*
+AzSC_CCEv4_WindowsServer2016/*
+test.ps1
+NVISO_w2k16.ps1
