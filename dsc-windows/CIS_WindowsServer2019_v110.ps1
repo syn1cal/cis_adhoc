@@ -1991,15 +1991,6 @@ Configuration CIS_WindowsServer2019_v110 {
           ValueData  = '0'
        }
 
-       # 18.8.31.1 (L2) Ensure 'Allow Clipboard synchronization across devices' is set to 'Disabled'
-       Registry 'AllowCrossDeviceClipboard' {
-         Ensure     = 'Present'
-         Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System'
-         ValueName  = 'AllowCrossDeviceClipboard'
-         ValueType  = 'DWord'
-         ValueData  = '0'
-      }
-       
        # 18.8.31.2 (L2) Ensure 'Allow upload of User Activities' is set to 'Disabled'
        Registry 'AllowCrossDeviceClipboard' {
          Ensure     = 'Present'
