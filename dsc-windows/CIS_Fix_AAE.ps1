@@ -34,36 +34,6 @@ Configuration CIS_Fix_AAE {
             Reset_account_lockout_counter_after         = 15
         }
 
-       #  2.2.1 (L1) Ensure 'Access Credential Manager as a trusted caller' is set to 'No One'
-       UserRightsAssignment AccessCredentialManagerasatrustedcaller {
-          Policy       = 'Access_Credential_Manager_as_a_trusted_caller'
-          Identity     = ''
-       }
-
-       #  2.2.4 (L1) Ensure 'Act as part of the operating system' is set to 'No One'
-       UserRightsAssignment Actaspartoftheoperatingsystem {
-          Policy       = 'Act_as_part_of_the_operating_system'
-          Identity     = ''
-       }
-
-      #  2.2.5 (L1) Ensure 'Add workstations to domain' is set to 'Administrators' (DC only)
-       UserRightsAssignment Addworkstationstodomain {
-          Policy       = 'Add_workstations_to_domain'
-          Identity     = 'Administrators'
-       }
-
-      #  2.2.6 (L1) Ensure 'Adjust memory quotas for a process' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE'
-      UserRightsAssignment Adjustmemoryquotasforaprocess {
-         Policy       = 'Adjust_memory_quotas_for_a_process'
-         Identity     = 'Administrators, LOCAL SERVICE, NETWORK SERVICE'
-      }
-
-      #  2.2.10 (L1) Ensure 'Back up files and directories' is set to 'Administrators'
-       UserRightsAssignment Backupfilesanddirectories {
-          Policy       = 'Back_up_files_and_directories'
-          Identity     = 'Administrators'
-       }
-
       #  2.2.11 (L1) Ensure 'Change the system time' is set to 'Administrators, LOCAL SERVICE'
        UserRightsAssignment Changethesystemtime {
           Policy       = 'Change_the_system_time'
@@ -970,15 +940,6 @@ Configuration CIS_Fix_AAE {
           ValueData    = '30'
        }
 
-       #  18.3.1 (L1) Ensure 'Apply UAC restrictions to local accounts on network logons' is set to 'Enabled' (MS only)
-       Registry 'LocalAccountTokenFilterPolicy' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System'
-          ValueName    = 'LocalAccountTokenFilterPolicy'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
        #  18.3.2 (L1) Ensure 'Configure SMB v1 client driver' is set to 'Enabled: Disable driver'
        Registry 'Start' {
           Ensure       = 'Present'
@@ -993,15 +954,6 @@ Configuration CIS_Fix_AAE {
           Ensure       = 'Present'
           Key          = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters'
           ValueName    = 'SMB1'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
-       #  18.3.4 (L1) Ensure 'Enable Structured Exception Handling Overwrite Protection (SEHOP)' is set to 'Enabled'
-       Registry 'DisableExceptionChainValidation' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SessionManager\kernel'
-          ValueName    = 'DisableExceptionChainValidation'
           ValueType    = 'DWord'
           ValueData    = '0'
        }
@@ -1073,15 +1025,6 @@ Configuration CIS_Fix_AAE {
           Ensure       = 'Present'
           Key          = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NetBT\Parameters'
           ValueName    = 'NoNameReleaseOnDemand'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
-
-       #  18.4.8 (L1) Ensure 'MSS: (SafeDllSearchMode) Enable Safe DLL search mode (recommended)' is set to 'Enabled'
-       Registry 'SafeDllSearchMode' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SessionManager'
-          ValueName    = 'SafeDllSearchMode'
           ValueType    = 'DWord'
           ValueData    = '1'
        }
@@ -1185,15 +1128,6 @@ Configuration CIS_Fix_AAE {
           ValueData  = '1'
        }
        
-       #  18.8.3.1 (L1) Ensure 'Include command line in process creation events' is set to 'Disabled'
-       Registry 'ProcessCreationIncludeCmdLine_Enabled' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit'
-          ValueName  = 'ProcessCreationIncludeCmdLine_Enabled'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
        #  18.8.4.1 (L1) Ensure 'Remote host allows delegation of non-exportable credentials' is set to 'Enabled'
        Registry 'AllowProtectedCreds' {
           Ensure     = 'Present'
@@ -1274,15 +1208,6 @@ Configuration CIS_Fix_AAE {
           ValueType  = 'DWord'
           ValueData  = '1'
        }
-
-       # 18.8.26.1 (L1) Ensure 'Enumeration policy for external devices incompatible with Kernel DMA Protection' is set to 'Enabled: Block All'
-       Registry 'DeviceEnumerationPolicy' {
-         Ensure     = 'Present'
-         Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Kernel DMA Protection'
-         ValueName  = 'DeviceEnumerationPolicy'
-         ValueType  = 'DWord'
-         ValueData  = '0'
-      }       
 
        #  18.8.28.1 (L1) Ensure 'Block user from showing account details on signin' is set to 'Enabled'
        Registry 'BlockUserFromShowingAccountDetailsOnSignin' {
@@ -1410,15 +1335,6 @@ Configuration CIS_Fix_AAE {
           ValueData  = '0'
        }
 
-       #  18.8.37.1 (L1) Ensure 'Enable RPC Endpoint Mapper Client Authentication' is set to 'Enabled' (MS only)
-       Registry 'EnableAuthEpResolution' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsNT\Rpc'
-          ValueName  = 'EnableAuthEpResolution'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
        #  18.9.6.1 (L1) Ensure 'Allow Microsoft accounts to be optional' is set to 'Enabled'
        Registry 'MSAOptional' {
           Ensure     = 'Present'
@@ -1462,15 +1378,6 @@ Configuration CIS_Fix_AAE {
           ValueName  = 'EnhancedAntiSpoofing'
           ValueType  = 'DWord'
           ValueData  = '1'
-       }
-
-       #  18.9.12.1 (L2) Ensure 'Allow Use of Camera' is set to 'Disabled'
-       Registry 'AllowCamera' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Camera'
-          ValueName  = 'AllowCamera'
-          ValueType  = 'DWord'
-          ValueData  = '0'
        }
 
        #  18.9.13.1 (L1) Ensure 'Turn off Microsoft consumer experiences' is set to 'Enabled'
@@ -1617,15 +1524,6 @@ Configuration CIS_Fix_AAE {
           ValueData  = '0'
        }
 
-       #  18.9.30.4 (L1) Ensure 'Turn off shell protocol protected mode' is set to 'Disabled'
-       Registry 'PreXPSP2ShellProtocolBehavior' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer'
-          ValueName  = 'PreXPSP2ShellProtocolBehavior'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
        #  18.9.44.1 (L1) Ensure 'Block all consumer Microsoft account user authentication' is set to 'Enabled'
        Registry 'DisableUserAuth' {
           Ensure     = 'Present'
@@ -1649,15 +1547,6 @@ Configuration CIS_Fix_AAE {
           Ensure     = 'Present'
           Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services'
           ValueName  = 'DisablePasswordSaving'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.9.59.3.2.1 (L2) Ensure 'Restrict Remote Desktop Services users to a single Remote Desktop Services session' is set to 'Enabled'
-       Registry 'fSingleSessionPerUser' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services'
-          ValueName  = 'fSingleSessionPerUser'
           ValueType  = 'DWord'
           ValueData  = '1'
        }
@@ -1734,15 +1623,6 @@ Configuration CIS_Fix_AAE {
           ValueData  = '1'
        }
 
-       #  18.9.60.1 (L1) Ensure 'Prevent downloading of enclosures' is set to 'Enabled'
-       Registry 'DisableEnclosureDownload' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\InternetExplorer\Feeds'
-          ValueName  = 'DisableEnclosureDownload'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
        #  18.9.61.3 (L1) Ensure 'Allow indexing of encrypted files' is set to 'Disabled'
        Registry 'AllowIndexingEncryptedStoresOrItems' {
           Ensure     = 'Present'
@@ -1757,42 +1637,6 @@ Configuration CIS_Fix_AAE {
           Ensure     = 'Present'
           Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform'
           ValueName  = 'NoGenTicket'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.9.77.3.1 (L1) Ensure 'Configure local setting override for reporting to Microsoft MAPS' is set to 'Disabled'
-       Registry 'LocalSettingOverrideSpynetReporting' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsDefender\Spynet'
-          ValueName  = 'LocalSettingOverrideSpynetReporting'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
-       #  18.9.77.3.2  (L2) Ensure 'Join Microsoft MAPS' is set to 'Disabled'
-       Registry 'SpynetReporting' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsDefender\Spynet'
-          ValueName  = 'SpynetReporting'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
-       #  18.9.77.7.1 (L1) Ensure 'Turn on behavior monitoring' is set to 'Enabled'
-       Registry 'DisableBehaviorMonitoring' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection'
-          ValueName  = 'DisableBehaviorMonitoring'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
-       #  18.9.77.9.1 (L2) Ensure 'Configure Watson events' is set to 'Disabled'
-       Registry 'DisableGenericRePorts' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsDefender\Reporting'
-          ValueName  = 'DisableGenericRePorts'
           ValueType  = 'DWord'
           ValueData  = '1'
        }
@@ -1815,87 +1659,6 @@ Configuration CIS_Fix_AAE {
           ValueData  = '1'
        }
 
-       #  18.9.77.13.1.1 (L1) Ensure 'Configure Attack Surface Reduction rules' is set to 'Enabled'
-       Registry 'ExploitGuard_ASR_Rules' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR'
-          ValueName  = 'ExploitGuard_ASR_Rules'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.9.77.13.1.2 (L1) Ensure 'Configure Attack Surface Reduction rules: Set the state for each ASR rule' is 'configured'
-       Registry '75668c1f-73b5-4cf0-bb93-3ecf5cb7cc84' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules'
-          ValueName  = '75668c1f-73b5-4cf0-bb93-3ecf5cb7cc84'
-          ValueType  = 'String'
-          ValueData  = '1'
-       }
-
-       #  18.9.77.13.1.2 (L1) Ensure 'Configure Attack Surface Reduction rules: Set the state for each ASR rule' is 'configured'
-       Registry '3b576869-a4ec-4529-8536-b80a7769e899' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules'
-          ValueName  = '3b576869-a4ec-4529-8536-b80a7769e899'
-          ValueType  = 'String'
-          ValueData  = '1'
-       }
-
-       #  18.9.77.13.1.2 (L1) Ensure 'Configure Attack Surface Reduction rules: Set the state for each ASR rule' is 'configured'
-       Registry 'd4f940ab-401b-4efc-aadc-ad5f3c50688a' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules'
-          ValueName  = 'd4f940ab-401b-4efc-aadc-ad5f3c50688a'
-          ValueType  = 'String'
-          ValueData  = '1'
-       }
-
-       #  18.9.77.13.1.2 (L1) Ensure 'Configure Attack Surface Reduction rules: Set the state for each ASR rule' is 'configured'
-       Registry '92e97fa1-2edf-4476-bdd6-9dd0b4dddc7b' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules'
-          ValueName  = '92e97fa1-2edf-4476-bdd6-9dd0b4dddc7b'
-          ValueType  = 'String'
-          ValueData  = '1'
-       }
-
-       #  18.9.77.13.1.2 (L1) Ensure 'Configure Attack Surface Reduction rules: Set the state for each ASR rule' is 'configured'
-       Registry '5beb7efe-fd9a-4556-801d-275e5ffc04cc' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules'
-          ValueName  = '5beb7efe-fd9a-4556-801d-275e5ffc04cc'
-          ValueType  = 'String'
-          ValueData  = '1'
-       }
-
-       #  18.9.77.13.1.2 (L1) Ensure 'Configure Attack Surface Reduction rules: Set the state for each ASR rule' is 'configured'
-       Registry 'd3e037e1-3eb8-44c8-a917-57927947596d' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules'
-          ValueName  = 'd3e037e1-3eb8-44c8-a917-57927947596d'
-          ValueType  = 'String'
-          ValueData  = '1'
-       }
-
-       #  18.9.77.13.1.2 (L1) Ensure 'Configure Attack Surface Reduction rules: Set the state for each ASR rule' is 'configured'
-       Registry 'be9ba2d9-53ea-4cdc-84e5-9b1eeee46550' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules'
-          ValueName  = 'be9ba2d9-53ea-4cdc-84e5-9b1eeee46550'
-          ValueType  = 'String'
-          ValueData  = '1'
-       }
-
-       #  18.9.77.13.3.1 (L1) Ensure 'Prevent users and apps from accessing dangerous websites' is set to 'Enabled: Block'
-       Registry 'EnableNetworkProtection' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\Network Protection'
-          ValueName  = 'EnableNetworkProtection'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
        #  18.9.77.15 (L1) Ensure 'Turn off Windows Defender AntiVirus' is set to 'Disabled'
        Registry 'DisableAntiSpyware' {
          Ensure     = 'Present'
@@ -1905,70 +1668,6 @@ Configuration CIS_Fix_AAE {
          ValueData  = '0'
       }
        
-       #  18.9.80.1.1 (L1) Ensure 'Configure Windows Defender SmartScreen' is set to 'Enabled: Warn and prevent bypass'
-       Registry 'EnableSmartScreen' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System'
-          ValueName  = 'EnableSmartScreen'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.9.80.1.1 (L1) Ensure 'Configure Windows Defender SmartScreen' is set to 'Enabled: Warn and prevent bypass'
-       Registry 'ShellSmartScreenLevel' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System'
-          ValueName  = 'ShellSmartScreenLevel'
-          ValueType  = 'String'
-          ValueData  = 'Block'
-       }
-       
-
-       #  18.9.84.1 (L2) Ensure 'Allow suggested apps in Windows Ink Workspace' is set to 'Disabled'
-       Registry 'AllowSuggestedAppsInWindowsInkWorkspace' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsInkWorkspace'
-          ValueName  = 'AllowSuggestedAppsInWindowsInkWorkspace'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
-       #  18.9.84.2 (L1) Ensure 'Allow Windows Ink Workspace' is set to 'Enabled: On, but disallow access above lock' OR 'Disabled' but not 'Enabled: On'
-       Registry 'AllowWindowsInkWorkspace' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsInkWorkspace'
-          ValueName  = 'AllowWindowsInkWorkspace'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.9.85.1 (L1) Ensure 'Allow user control over installs' is set to 'Disabled'
-       Registry 'EnableUserControl' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer'
-          ValueName  = 'EnableUserControl'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
-       #  18.9.85.2 (L1) Ensure 'Always install with elevated privileges' is set to 'Disabled'
-       Registry 'AlwaysInstallElevated' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer'
-          ValueName  = 'AlwaysInstallElevated'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
-       #  18.9.85.3 (L2) Ensure 'Prevent Internet Explorer security prompt for Windows Installer scripts' is set to 'Disabled'
-       Registry 'SafeForScripting' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer'
-          ValueName  = 'SafeForScripting'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
        #  18.9.86.1 (L1) Ensure 'Sign-in last interactive user automatically after a system-initiated restart' is set to 'Disabled'
        Registry 'DisableAutomaticRestartSignOn' {
           Ensure     = 'Present'
@@ -1976,24 +1675,6 @@ Configuration CIS_Fix_AAE {
           ValueName  = 'DisableAutomaticRestartSignOn'
           ValueType  = 'DWord'
           ValueData  = '1'
-       }
-
-       #  18.9.95.1 (L1) Ensure 'Turn on PowerShell Script Block Logging' is set to 'Disabled'
-       Registry 'EnableScriptBlockLogging' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging'
-          ValueName  = 'EnableScriptBlockLogging'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
-       #  18.9.95.2 (L1) Ensure 'Turn on PowerShell Transcription' is set to 'Disabled'
-       Registry 'EnableTranscripting' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\Transcription'
-          ValueName  = 'EnableTranscripting'
-          ValueType  = 'DWord'
-          ValueData  = '0'
        }
 
        #  18.9.97.1.1 (L1) Ensure 'Allow Basic authentication' is set to 'Disabled'
@@ -2049,15 +1730,6 @@ Configuration CIS_Fix_AAE {
           ValueType  = 'DWord'
           ValueData  = '0'
        }
-
-       #  18.9.99.2.1 (L1) Ensure 'Prevent users from modifying settings' is set to 'Enabled'
-       Registry 'DisallowExploitProtectionOverride' {
-         Ensure     = 'Present'
-         Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender Security Center\App and Browser protection'
-         ValueName  = 'DisallowExploitProtectionOverride'
-         ValueType  = 'DWord'
-         ValueData  = '1'
-      }
 
        #  18.9.102.1.1 (L1) Ensure 'Manage preview builds' is set to 'Enabled: Disable preview builds'
        Registry 'ManagePreviewBuilds' {
@@ -2204,15 +1876,6 @@ Configuration CIS_Fix_AAE {
           ValueData    = '1'
        }
 
-       #  19.7.4.1 (L1) Ensure 'Do not preserve zone information in file attachments' is set to 'Disabled'
-       Registry 'SaveZoneInformation' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments'
-          ValueName    = 'SaveZoneInformation'
-          ValueType    = 'DWord'
-          ValueData    = '2'
-       }
-
        #  19.7.4.2 (L1) Ensure 'Notify antivirus programs when opening attachments' is set to 'Enabled'
        Registry 'ScanWithAntiVirus' {
           Ensure       = 'Present'
@@ -2229,33 +1892,6 @@ Configuration CIS_Fix_AAE {
           ValueName    = 'ConfigureWindowsSpotlight'
           ValueType    = 'DWord'
           ValueData    = '2'
-       }
-
-       #  19.7.7.2 (L1) Ensure 'Do not suggest third-party content in Windows spotlight' is set to 'Enabled'
-       Registry 'DisableThirdPartySuggestions' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\CloudContent'
-          ValueName    = 'DisableThirdPartySuggestions'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
-
-       #  19.7.7.3 (L2) Ensure 'Do not use diagnostic data for tailored experiences' is set to 'Enabled'
-       Registry 'DisableTailoredExperiencesWithDiagnosticData' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\CloudContent'
-          ValueName    = 'DisableTailoredExperiencesWithDiagnosticData'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
-
-       #  19.7.7.4 (L2) Ensure 'Turn off all Windows spotlight features' is set to 'Enabled'
-       Registry 'DisableWindowsSpotlightFeatures' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\CloudContent'
-          ValueName    = 'DisableWindowsSpotlightFeatures'
-          ValueType    = 'DWord'
-          ValueData    = '1'
        }
 
    }
