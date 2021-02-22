@@ -88,22 +88,10 @@ Configuration CIS_Fix_AAE {
           Identity     = ''
        }
 
-      #  2.2.15 (L1) Ensure 'Create global objects' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE'
-       UserRightsAssignment Createglobalobjects {
-          Policy       = 'Create_global_objects'
-          Identity     = 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE'
-       }
-
       #  2.2.16 (L1) Ensure 'Create permanent shared objects' is set to 'No One'
        UserRightsAssignment Createpermanentsharedobjects {
           Policy       = 'Create_permanent_shared_objects'
           Identity     = ''
-       }
-
-      #  2.2.17 (L1) Ensure 'Create symbolic links' is set to 'Administrators' (DC only)
-       UserRightsAssignment Createsymboliclinks {
-          Policy       = 'Create_symbolic_links'
-          Identity     = 'Administrators'
        }
 
       #  2.2.19 (L1) Ensure 'Debug programs' is set to 'Administrators'
@@ -154,21 +142,9 @@ Configuration CIS_Fix_AAE {
           Identity     = 'LOCAL SERVICE, NETWORK SERVICE'
        }
 
-      #  2.2.31 (L1) Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' (DC only)
-       UserRightsAssignment Impersonateaclientafterauthentication {
-          Policy       = 'Impersonate_a_client_after_authentication'
-          Identity     = 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE'
-       }
-
       #  2.2.33 (L1) Ensure 'Increase scheduling priority' is set to 'Administrators'
        UserRightsAssignment Increaseschedulingpriority {
           Policy       = 'Increase_scheduling_priority'
-          Identity     = 'Administrators'
-       }
-
-      #  2.2.34 (L1) Ensure 'Load and unload device drivers' is set to 'Administrators'
-       UserRightsAssignment Loadandunloaddevicedrivers {
-          Policy       = 'Load_and_unload_device_drivers'
           Identity     = 'Administrators'
        }
 
@@ -199,12 +175,6 @@ Configuration CIS_Fix_AAE {
       # 2.2.40 (L1) Ensure 'Modify firmware environment values' is set to 'Administrators'
        UserRightsAssignment Modifyfirmwareenvironmentvalues {
           Policy       = 'Modify_firmware_environment_values'
-          Identity     = 'Administrators'
-       }
-
-      #  2.2.41 (L1) Ensure 'Perform volume maintenance tasks' is set to 'Administrators'
-       UserRightsAssignment Performvolumemaintenancetasks {
-          Policy       = 'Perform_volume_maintenance_tasks'
           Identity     = 'Administrators'
        }
 
@@ -244,12 +214,6 @@ Configuration CIS_Fix_AAE {
           Identity     = ''
        }
 
-      #  2.2.48 (L1) Ensure 'Take ownership of files or other objects' is set to 'Administrators'
-       UserRightsAssignment Takeownershipoffilesorotherobjects {
-          Policy       = 'Take_ownership_of_files_or_other_objects'
-          Identity     = 'Administrators'
-       }
-
        #Source: https://github.com/PowerShell/SecurityPolicyDsc
        SecurityOption AccountSecurityOptions {
          Name                                   = 'AccountSecurityOptions'
@@ -263,8 +227,6 @@ Configuration CIS_Fix_AAE {
          Accounts_Limit_local_account_use_of_blank_passwords_to_console_logon_only = 'Enabled'
          # 2.3.2.1 (L1) Ensure 'Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings' is set to 'Enabled'
          Audit_Force_audit_policy_subcategory_settings_Windows_Vista_or_later_to_override_audit_policy_category_settings = 'Enabled'
-         # 2.3.4.1 (L1) Ensure 'Devices: Allowed to format and eject removable media' is set to 'Administrators'
-         Devices_Allowed_to_format_and_eject_removable_media = 'Administrators'
          # 2.3.4.2 (L1) Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'
          Devices_Prevent_users_from_installing_printer_drivers = 'Enabled'
          # 2.3.6.1 (L1) Ensure 'Domain member: Digitally encrypt or sign secure channel data (always)' is set to 'Enabled'
@@ -376,24 +338,6 @@ Configuration CIS_Fix_AAE {
          System_objects_Require_case_insensitivity_for_non_Windows_subsystems = 'Enabled' 
          # 2.3.15.2 (L1) Ensure 'System objects: Strengthen default permissions of internal system objects (e.g. Symbolic Links)' is set to 'Enabled'
          System_objects_Strengthen_default_permissions_of_internal_system_objects_eg_Symbolic_Links = 'Enabled' 
-         # 2.3.17.1 (L1) Ensure 'User Account Control: Admin Approval Mode for the Built-in Administrator account' is set to 'Enabled' 
-         User_Account_Control_Admin_Approval_Mode_for_the_Built_in_Administrator_account = 'Enabled'
-         # 2.3.17.2 (L1) Ensure 'User Account Control: Allow UIAccess applications to prompt for elevation without using the secure desktop' is set to 'Disabled' 
-         User_Account_Control_Allow_UIAccess_applications_to_prompt_for_elevation_without_using_the_secure_desktop = 'Disabled'
-         # 2.3.17.3 (L1) Ensure 'User Account Control: Behavior of the elevation prompt for administrators in Admin Approval Mode' is set to 'Prompt for consent on the secure desktop' 
-         User_Account_Control_Behavior_of_the_elevation_prompt_for_administrators_in_Admin_Approval_Mode = 'Prompt for consent on the secure desktop'
-         # 2.3.17.4 (L1) Ensure 'User Account Control: Behavior of the elevation prompt for standard users' is set to 'Automatically deny elevation requests' 
-         User_Account_Control_Behavior_of_the_elevation_prompt_for_standard_users = 'Automatically deny elevation request'
-         # 2.3.17.5 (L1) Ensure 'User Account Control: Detect application installations and prompt for elevation' is set to 'Enabled' 
-         User_Account_Control_Detect_application_installations_and_prompt_for_elevation = 'Enabled'
-         # 2.3.17.6 (L1) Ensure 'User Account Control: Only elevate UIAccess applications that are installed in secure locations' is set to 'Enabled' 
-         User_Account_Control_Only_elevate_UIAccess_applications_that_are_installed_in_secure_locations = 'Enabled'
-         # 2.3.17.7 (L1) Ensure 'User Account Control: Run all administrators in Admin Approval Mode' is set to 'Enabled'
-         User_Account_Control_Run_all_administrators_in_Admin_Approval_Mode = 'Enabled'
-         # 2.3.17.8 (L1) Ensure 'User Account Control: Switch to the secure desktop when prompting for elevation' is set to 'Enabled' 
-         User_Account_Control_Switch_to_the_secure_desktop_when_prompting_for_elevation = 'Enabled'
-         # 2.3.17.9 (L1) Ensure 'User Account Control: Virtualize file and registry write failures to per-user locations' is set to 'Enabled'
-         User_Account_Control_Virtualize_file_and_registry_write_failures_to_per_user_locations = 'Enabled'
 
        }
 
