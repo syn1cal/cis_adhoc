@@ -52,18 +52,6 @@ Configuration CIS_Fix_AAE {
           Identity     = 'Administrators'
        }
 
-      #  2.2.14 (L1) Ensure 'Create a token object' is set to 'No One'
-       UserRightsAssignment Createatokenobject {
-          Policy       = 'Create_a_token_object'
-          Identity     = ''
-       }
-
-      #  2.2.16 (L1) Ensure 'Create permanent shared objects' is set to 'No One'
-       UserRightsAssignment Createpermanentsharedobjects {
-          Policy       = 'Create_permanent_shared_objects'
-          Identity     = ''
-       }
-
       #  2.2.19 (L1) Ensure 'Debug programs' is set to 'Administrators'
        UserRightsAssignment Debugprograms {
           Policy       = 'Debug_programs'
@@ -88,12 +76,6 @@ Configuration CIS_Fix_AAE {
           Identity     = 'Guests'
        }
 
-      # 2.2.25 (L1) Ensure 'Deny log on through Remote Desktop Services' is set to 'Guests' (DC only)
-       UserRightsAssignment DenylogonthroughRemoteDesktopServices {
-          Policy       = 'Deny_log_on_through_Remote_Desktop_Services'
-          Identity     = 'Guests'
-       }
-
       #  2.2.28 (L1) Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'No One' (MS only)
        UserRightsAssignment Enablecomputeranduseraccountstobetrustedfordelegation {
           Policy       = 'Enable_computer_and_user_accounts_to_be_trusted_for_delegation'
@@ -112,60 +94,16 @@ Configuration CIS_Fix_AAE {
           Identity     = 'LOCAL SERVICE, NETWORK SERVICE'
        }
 
-      #  2.2.33 (L1) Ensure 'Increase scheduling priority' is set to 'Administrators'
-       UserRightsAssignment Increaseschedulingpriority {
-          Policy       = 'Increase_scheduling_priority'
-          Identity     = 'Administrators'
-       }
-
       #  2.2.35 (L1) Ensure 'Lock pages in memory' is set to 'No One'
        UserRightsAssignment Lockpagesinmemory {
           Policy       = 'Lock_pages_in_memory'
           Identity     = ''
        }
 
-
       #  2.2.38 (L1) Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only)
        UserRightsAssignment Manageauditingandsecuritylog {
           Policy       = 'Manage_auditing_and_security_log'
           Identity     = 'Administrators'
-       }
-
-      #  2.2.39 (L1) Ensure 'Modify an object label' is set to 'No One'
-       UserRightsAssignment Modifyanobjectlabel {
-          Policy       = 'Modify_an_object_label'
-          Identity     = ''
-       }
-
-      #  2.2.42 (L1) Ensure 'Profile single process' is set to 'Administrators'
-       UserRightsAssignment Profilesingleprocess {
-          Policy       = 'Profile_single_process'
-          Identity     = 'Administrators'
-       }
-
-      #  2.2.43 (L1) Ensure 'Profile system performance' is set to 'Administrators, NT SERVICE\WdiServiceHost'
-       UserRightsAssignment Profilesystemperformance {
-          Policy       = 'Profile_system_performance'
-          Identity     = 'Administrators, NT SERVICE\WdiServiceHost'
-       }
-
-      #  2.2.44 (L1) Ensure 'Replace a process level token' is set to 'LOCAL SERVICE, NETWORK SERVICE'
-       UserRightsAssignment Replaceaprocessleveltoken {
-          Policy       = 'Replace_a_process_level_token'
-          Identity     = 'LOCAL SERVICE, NETWORK SERVICE'
-       }
-
-
-      #  2.2.46 (L1) Ensure 'Shut down the system' is set to 'Administrators'
-       UserRightsAssignment Shutdownthesystem {
-          Policy       = 'Shut_down_the_system'
-          Identity     = 'Administrators'
-       }
-
-      #  2.2.47 (L1) Ensure 'Synchronize directory service data' is set to 'No One' (DC only)
-       UserRightsAssignment Synchronizedirectoryservicedata {
-          Policy       = 'Synchronize_directory_service_data'
-          Identity     = ''
        }
 
        #Source: https://github.com/PowerShell/SecurityPolicyDsc
@@ -175,285 +113,6 @@ Configuration CIS_Fix_AAE {
          Accounts_Block_Microsoft_accounts = 'Users cant add or log on with Microsoft accounts'
          # 2.3.1.3 (L1) Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)
          Accounts_Guest_account_status = 'Disabled'
-         # 2.3.1.4 (L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set to 'Enabled'
-         Accounts_Limit_local_account_use_of_blank_passwords_to_console_logon_only = 'Enabled'
-         # 2.3.2.1 (L1) Ensure 'Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings' is set to 'Enabled'
-         Audit_Force_audit_policy_subcategory_settings_Windows_Vista_or_later_to_override_audit_policy_category_settings = 'Enabled'
-         # 2.3.4.2 (L1) Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'
-         Devices_Prevent_users_from_installing_printer_drivers = 'Enabled'
-         # 2.3.6.1 (L1) Ensure 'Domain member: Digitally encrypt or sign secure channel data (always)' is set to 'Enabled'
-         Domain_member_Digitally_encrypt_or_sign_secure_channel_data_always = 'Enabled' 
-         # 2.3.6.2 (L1) Ensure 'Domain member: Digitally encrypt secure channel data (when possible)' is set to 'Enabled'
-         Domain_member_Digitally_encrypt_secure_channel_data_when_possible = 'Enabled'
-         # 2.3.6.3 (L1) Ensure 'Domain member: Digitally sign secure channel data (when possible)' is set to 'Enabled' 
-         Domain_member_Digitally_sign_secure_channel_data_when_possible = 'Enabled'
-         # 2.3.6.4 (L1) Ensure 'Domain member: Disable machine account password changes' is set to 'Disabled'
-         Domain_member_Disable_machine_account_password_changes = 'Disabled'
-         # 2.3.6.5 (L1) Ensure 'Domain member: Maximum machine account password age' is set to '30 or fewer days, but not 0'
-         Domain_member_Maximum_machine_account_password_age = '30'
-         # 2.3.6.6 (L1) Ensure 'Domain member: Require strong (Windows 2000 or later) session key' is set to 'Enabled'
-         Domain_member_Require_strong_Windows_2000_or_later_session_key = 'Enabled'
-         # 2.3.7.1 (L1) Ensure 'Interactive logon: Do not display last user name' is set to 'Enabled'
-         Interactive_logon_Do_not_display_last_user_name = 'Enabled' 
-         # 2.3.7.2 (L1) Ensure 'Interactive logon: Do not require CTRL+ALT+DEL' is set to 'Disabled'
-         Interactive_logon_Do_not_require_CTRL_ALT_DEL = 'Disabled' 
-         # 2.3.7.3 (L1) Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but not 0'
-         Interactive_logon_Machine_inactivity_limit = '900' 
-         # 2.3.7.4 (L1) Configure 'Interactive logon: Message text for users attempting to log on' 
-         Interactive_logon_Message_text_for_users_attempting_to_log_on = 'This computer system is the property of the organisation and is for authorised use by employees and designated contractors only. By continuing to use this system you indicate your awareness of and consent to these terms and conditions of use. It is the users responsibility to LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this notice.'
-         # 2.3.7.5 (L1) Configure 'Interactive logon: Message title for users attempting to log on'
-         #Interactive_logon_Message_title_for_users_attempting_to_log_on = '<Logon Warning>'
-         Interactive_logon_Message_title_for_users_attempting_to_log_on = 'Logon Warning'
-         # 2.3.7.6 (L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only) 
-         Interactive_logon_Number_of_previous_logons_to_cache_in_case_domain_controller_is_not_available = '4'
-         # 2.3.7.7 (L1) Ensure 'Interactive logon: Prompt user to change password before expiration' is set to 'between 5 and 14 days'
-         Interactive_logon_Prompt_user_to_change_password_before_expiration = '14'
-         # 2.3.7.8 (L1) Ensure 'Interactive logon: Require Domain Controller Authentication to unlock workstation' is set to 'Enabled' (MS only)
-         Interactive_logon_Require_Domain_Controller_authentication_to_unlock_workstation = 'Enabled' 
-         # 2.3.7.9 (L1) Ensure 'Interactive logon: Smart card removal behavior' is set to 'Lock Workstation' or higher
-         Interactive_logon_Smart_card_removal_behavior = 'Lock Workstation'
-         # 2.3.8.1 (L1) Ensure 'Microsoft network client: Digitally sign communications (always)' is set to 'Enabled' 
-         Microsoft_network_client_Digitally_sign_communications_always = 'Enabled'
-         # 2.3.8.2 (L1) Ensure 'Microsoft network client: Digitally sign communications (if server agrees)' is set to 'Enabled' 
-         Microsoft_network_client_Digitally_sign_communications_if_server_agrees = 'Enabled'
-         # 2.3.8.3 (L1) Ensure 'Microsoft network client: Send unencrypted password to third-party SMB servers' is set to 'Disabled' 
-         Microsoft_network_client_Send_unencrypted_password_to_third_party_SMB_servers = 'Disabled'
-         # 2.3.9.1 (L1) Ensure 'Microsoft network server: Amount of idle time required before suspending session' is set to '15 or fewer minute(s), but not 0'
-         Microsoft_network_server_Amount_of_idle_time_required_before_suspending_session = '15' 
-         # 2.3.9.2 (L1) Ensure 'Microsoft network server: Digitally sign communications (always)' is set to 'Enabled' 
-         Microsoft_network_server_Digitally_sign_communications_always = 'Enabled'
-         # 2.3.9.3 (L1) Ensure 'Microsoft network server: Digitally sign communications (if client agrees)' is set to 'Enabled' 
-         Microsoft_network_server_Digitally_sign_communications_if_client_agrees = 'Enabled'
-         # 2.3.9.4 (L1) Ensure 'Microsoft network server: Disconnect clients when logon hours expire' is set to 'Enabled'
-         Microsoft_network_server_Disconnect_clients_when_logon_hours_expire = 'Enabled' 
-         # 2.3.9.5 (L1) Ensure 'Microsoft network server: Server SPN target name validation level' is set to 'Accept if provided by client' or higher (MS only) 
-         #Microsoft_network_server_Server_SPN_target_name_validation_level = 'Accept if provided by client'
-         Microsoft_network_server_Server_SPN_target_name_validation_level = 'Required from client'
-         # 2.3.10.1 (L1) Ensure 'Network access: Allow anonymous SID/Name translation' is set to 'Disabled'
-         Network_access_Allow_anonymous_SID_Name_translation = 'Disabled' 
-         # 2.3.10.2 (L1) Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts' is set to 'Enabled' (MS only) 
-         Network_access_Do_not_allow_anonymous_enumeration_of_SAM_accounts = 'Enabled'
-         # 2.3.10.3 (L1) Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts and shares' is set to 'Enabled' (MS only) 
-         Network_access_Do_not_allow_anonymous_enumeration_of_SAM_accounts_and_shares = 'Enabled'
-         # 2.3.10.4 (L2) Ensure 'Network access: Do not allow storage of passwords and credentials for network authentication' is set to 'Enabled'
-         Network_access_Do_not_allow_storage_of_passwords_and_credentials_for_network_authentication = 'Enabled' 
-         # 2.3.10.5 (L1) Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disabled'
-         Network_access_Let_Everyone_permissions_apply_to_anonymous_users = 'Disabled' 
-         # 2.3.10.6 (L1) Configure 'Network access: Named Pipes that can be accessed anonymously' (DC only)
-         Network_access_Named_Pipes_that_can_be_accessed_anonymously = ''
-         # 2.3.10.10 (L1) Ensure 'Network access: Restrict anonymous access to Named Pipes and Shares' is set to 'Enabled' 
-         Network_access_Restrict_anonymous_access_to_Named_Pipes_and_Shares = 'Enabled' 
-         # 2.3.10.12 (L1) Ensure 'Network access: Shares that can be accessed anonymously' is set to 'None' 
-         Network_access_Shares_that_can_be_accessed_anonymously = ''
-         # 2.3.10.13 (L1) Ensure 'Network access: Sharing and security model for local accounts' is set to 'Classic - local users authenticate as themselves' 
-         Network_access_Sharing_and_security_model_for_local_accounts = 'Classic - local users authenticate as themselves'
-         # 2.3.11.1 (L1) Ensure 'Network security: Allow Local System to use computer identity for NTLM' is set to 'Enabled' 
-         Network_security_Allow_Local_System_to_use_computer_identity_for_NTLM = 'Enabled'
-         # 2.3.11.2 (L1) Ensure 'Network security: Allow LocalSystem NULL session fallback' is set to 'Disabled' 
-         Network_security_Allow_LocalSystem_NULL_session_fallback = 'Disabled'
-         # 2.3.11.3 (L1) Ensure 'Network Security: Allow PKU2U authentication requests to this computer to use online identities' is set to 'Disabled' 
-         Network_security_Allow_PKU2U_authentication_requests_to_this_computer_to_use_online_identities = 'Disabled'
-         # 2.3.11.4 (L1) Ensure 'Network security: Configure encryption types allowed for Kerberos' is set to 'AES128_HMAC_SHA1, AES256_HMAC_SHA1, Future encryption types' 
-         Network_security_Configure_encryption_types_allowed_for_Kerberos = 'AES128_HMAC_SHA1','AES256_HMAC_SHA1','FUTURE'
-         # 2.3.11.5 (L1) Ensure 'Network security: Do not store LAN Manager hash value on next password change' is set to 'Enabled' 
-         Network_security_Do_not_store_LAN_Manager_hash_value_on_next_password_change = 'Enabled'
-         # 2.3.11.6 (L1) Ensure 'Network security: Force logoff when logon hours expire' is set to 'Enabled' 
-         Network_security_Force_logoff_when_logon_hours_expire = 'Enabled'
-         # 2.3.11.7 (L1) Ensure 'Network security: LAN Manager authentication level' is set to 'Send NTLMv2 response only. Refuse LM & NTLM'
-         Network_security_LAN_Manager_authentication_level = 'Send NTLMv2 responses only. Refuse LM & NTLM' 
-         # 2.3.11.8 (L1) Ensure 'Network security: LDAP client signing requirements' is set to 'Negotiate signing' or higher
-         Network_security_LDAP_client_signing_requirements = 'Negotiate signing' 
-         # 2.3.11.9 (L1) Ensure 'Network security: Minimum session security for NTLM SSP based (including secure RPC) clients' is set to 'Require NTLMv2 session security, Require 128-bit encryption' 
-         Network_security_Minimum_session_security_for_NTLM_SSP_based_including_secure_RPC_clients = 'Both options checked'
-         # 2.3.11.10 (L1) Ensure 'Network security: Minimum session security for NTLM SSP based (including secure RPC) servers' is set to 'Require NTLMv2 session security, Require 128-bit encryption' 
-         Network_security_Minimum_session_security_for_NTLM_SSP_based_including_secure_RPC_servers = 'Both options checked' 
-         # 2.3.13.1 (L1) Ensure 'Shutdown: Allow system to be shut down without having to log on' is set to 'Disabled'
-         Shutdown_Allow_system_to_be_shut_down_without_having_to_log_on = 'Disabled' 
-         # 2.3.15.1 (L1) Ensure 'System objects: Require case insensitivity for non-Windows subsystems' is set to 'Enabled'
-         System_objects_Require_case_insensitivity_for_non_Windows_subsystems = 'Enabled' 
-         # 2.3.15.2 (L1) Ensure 'System objects: Strengthen default permissions of internal system objects (e.g. Symbolic Links)' is set to 'Enabled'
-         System_objects_Strengthen_default_permissions_of_internal_system_objects_eg_Symbolic_Links = 'Enabled' 
-
-       }
-
-       #  9.1.1 (L1) Ensure 'Windows Firewall: Domain: Firewall state' is set to 'On (recommended)'
-       Registry 'EnableFirewallDomain' {
-           Ensure      = 'Present'
-           Key         = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\EnableFirewall'
-           ValueName   = 'EnableFirewall'
-           ValueType   = 'DWord'
-           ValueData   = '1'
-       }
-
-       #  9.1.3 (L1) Ensure 'Windows Firewall: Domain: Outbound connections' is set to 'Allow (default)'
-       Registry 'DefaultOutboundActionDomain' {
-           Ensure      = 'Present'
-           Key         = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\DefaultOutboundAction'
-           ValueName   = 'DefaultOutboundAction'
-           ValueType   = 'DWord'
-           ValueData   = '0'
-       }
-
-       # 9.1.5 (L1) Ensure 'Windows Firewall: Domain: Logging: Name' is set to '%SYSTEMROOT%\System32\logfiles\firewall\domainfw.log'
-       Registry 'LogFilePathDomain' {
-           Ensure      = 'Present'
-           Key         = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\LogFilePath'
-           ValueName   = 'DisableNotifications'
-           ValueType   = 'String'
-           ValueData   = '%windir%\system32\logfiles\firewall\domainfirewall.log'
-       }
-
-       # 9.1.6 (L1) Ensure 'Windows Firewall: Domain: Logging: Size limit (KB)' is set to '16,384 KB or greater'
-       Registry 'LogFileSizeDomain' {
-           Ensure      = 'Present'
-           Key         = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\LogFileSize'
-           ValueName   = 'LogFileSize'
-           ValueType   = 'DWord'
-           ValueData   = '16384'
-       }
-
-       #  9.1.7 (L1) Ensure 'Windows Firewall: Domain: Logging: Log dropped packets' is set to 'Yes'
-       Registry 'LogDroppedPacketsDomain' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\LogDroppedPackets'
-          ValueName    = 'LogDroppedPackets'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
-
-       #  9.1.8 (L1) Ensure 'Windows Firewall: Domain: Logging: Log successful connections' is set to 'Yes'
-       Registry 'LogSuccessfulConnectionsDomain' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\LogSuccessfulConnections'
-          ValueName    = 'LogSuccessfulConnections'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
-
-       #  9.2.3 (L1) Ensure 'Windows Firewall: Private: Outbound connections' is set to 'Allow (default)'
-       Registry 'DefaultOutboundActionPrivate' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
-          ValueName    = 'DefaultOutboundAction'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
-       #  9.2.4 (L1) Ensure 'Windows Firewall: Private: Settings: Display a notification' is set to 'No'
-       Registry 'DisableNotificationsPrivate' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
-          ValueName    = 'DisableNotifications'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
-       #  9.2.5 (L1) Ensure 'Windows Firewall: Private: Logging: Name' is set to '%SYSTEMROOT%\System32\logfiles\firewall\privatefw.log'
-       Registry 'LogFilePathPrivate' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging'
-          ValueName    = 'LogFilePath'
-          ValueType    = 'String'
-          ValueData    = '%windir%\system32\logfiles\firewall\privatefirewall.log'
-       }
-
-       #  9.2.6 (L1) Ensure 'Windows Firewall: Private: Logging: Size limit (KB)' is set to '16,384 KB or greater'
-       Registry 'LogFileSizePrivate' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging'
-          ValueName    = 'LogFileSize'
-          ValueType    = 'DWord'
-          ValueData    = '16384'
-       }
-
-       #  9.2.7 (L1) Ensure 'Windows Firewall: Private: Logging: Log dropped packets' is set to 'Yes'
-       Registry 'LogDroppedPacketsPrivate' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging'
-          ValueName    = 'LogDroppedPackets'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
-
-       #  9.2.8 (L1) Ensure 'Windows Firewall: Private: Logging: Log successful connections' is set to 'Yes'
-       Registry 'LogSuccessfulConnectionsPrivate' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile\Logging'
-          ValueName    = 'LogSuccessfulConnections'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
-
-       #  9.3.1 (L1) Ensure 'Windows Firewall: Public: Firewall state' is set to 'On (recommended)'
-       Registry 'EnableFirewallPublic' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
-          ValueName    = 'EnableFirewall'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
-
-       #  9.3.3 (L1) Ensure 'Windows Firewall: Public: Outbound connections' is set to 'Allow (default)'
-       Registry 'DefaultOutboundActionPublic' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
-          ValueName    = 'DefaultOutboundAction'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
-       #  9.3.4 (L1) Ensure 'Windows Firewall: Public: Settings: Display a notification' is set to 'No'
-       Registry 'DisableNotificationsPublic' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
-          ValueName    = 'DisableNotifications'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
-       #  9.3.6 (L1) Ensure 'Windows Firewall: Public: Settings: Apply local connection security rules' is set to 'No'
-       Registry 'AllowLocalIPsecPolicyMerge' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
-          ValueName    = 'AllowLocalIPsecPolicyMerge'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
-       #  9.3.7 (L1) Ensure 'Windows Firewall: Public: Logging: Name' is set to '%SYSTEMROOT%\System32\logfiles\firewall\publicfw.log'
-       Registry 'LogFilePathPublic' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging'
-          ValueName    = 'LogFilePath'
-          ValueType    = 'String'
-          ValueData    = '%windir%\system32\logfiles\firewall\publicfirewall.log'
-       }
-
-       #  9.3.8 (L1) Ensure 'Windows Firewall: Public: Logging: Size limit (KB)' is set to '16,384 KB or greater'
-       Registry 'LogFileSizePublic' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging'
-          ValueName    = 'LogFileSize'
-          ValueType    = 'Dword'
-          ValueData    = '16384'
-       }
-
-       #  9.3.9 (L1) Ensure 'Windows Firewall: Public: Logging: Log dropped packets' is set to 'Yes'
-       Registry 'LogDroppedPacketsPublic' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging'
-          ValueName    = 'LogDroppedPackets'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
-
-       #  9.3.10 (L1) Ensure 'Windows Firewall: Public: Logging: Log successful connections' is set to 'Yes'
-       Registry 'LogSuccessfulConnectionsPublic' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile\Logging'
-          ValueName    = 'LogSuccessfulConnections'
-          ValueType    = 'DWord'
-          ValueData    = '1'
        }
 
        # 17.1.1 (L1) Ensure 'Audit Credential Validation' is set to 'Success and Failure'
@@ -1092,33 +751,6 @@ Configuration CIS_Fix_AAE {
           ValueData    = '1'
        }
 
-       #  18.5.14.1 (L1) Ensure 'Hardened UNC Paths' is set to 'Enabled, with "Require Mutual Authentication" and "Require Integrity" set for all NETLOGON and SYSVOL shares'
-       Registry '\\*\NETLOGON' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths'
-          ValueName    = '\\*\NETLOGON'
-          ValueType    = 'String'
-          ValueData    = 'RequireMutualAuthentication=1, RequireIntegrity=1'
-       }
-
-       #  18.5.14.1 (L1) Ensure 'Hardened UNC Paths' is set to 'Enabled, with "Require Mutual Authentication" and "Require Integrity" set for all NETLOGON and SYSVOL shares'
-       Registry '\\*\SYSVOL' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths'
-          ValueName    = '\\*\SYSVOL'
-          ValueType    = 'String'
-          ValueData    = 'RequireMutualAuthentication=1, RequireIntegrity=1'
-       }
-
-       #  18.5.19.2.1 (L2) Disable IPv6 (Ensure TCPIP6 Parameter 'DisabledComponents' is set to '0xff (255)')
-       Registry 'DisabledComponents' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TCPIP6\Parameters'
-          ValueName    = 'DisabledComponents'
-          ValueType    = 'DWord'
-          ValueData    = '255'
-       }
-
        #  18.5.21.1 (L1) Ensure 'Minimize the number of simultaneous connections to the Internet or a Windows Domain' is set to 'Enabled'
        Registry 'fMinimizeConnections' {
           Ensure     = 'Present'
@@ -1128,15 +760,6 @@ Configuration CIS_Fix_AAE {
           ValueData  = '1'
        }
        
-       #  18.8.4.1 (L1) Ensure 'Remote host allows delegation of non-exportable credentials' is set to 'Enabled'
-       Registry 'AllowProtectedCreds' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CredentialsDelegation'
-          ValueName  = 'AllowProtectedCreds'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
        #  18.8.14.1 (L1) Ensure 'Boot-Start Driver Initialization Policy' is set to 'Enabled: Good, unknown and bad but critical'
        Registry 'DriverLoadPolicy' {
           Ensure     = 'Present'
@@ -1349,15 +972,6 @@ Configuration CIS_Fix_AAE {
           Ensure     = 'Present'
           Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer'
           ValueName  = 'NoAutoplayfornonVolume'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.9.8.2 (L1) Ensure 'Set the default behavior for AutoRun' is set to 'Enabled: Do not execute any autorun commands'
-       Registry 'NoAutorun' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer'
-          ValueName  = 'NoAutorun'
           ValueType  = 'DWord'
           ValueData  = '1'
        }
@@ -1639,15 +1253,6 @@ Configuration CIS_Fix_AAE {
           ValueName  = 'NoGenTicket'
           ValueType  = 'DWord'
           ValueData  = '1'
-       }
-
-       #  18.9.77.10.1 (L1) Ensure 'Scan removable drives' is set to 'Enabled'
-       Registry 'DisableRemovableDriveScanning' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsDefender\Scan'
-          ValueName  = 'DisableRemovableDriveScanning'
-          ValueType  = 'DWord'
-          ValueData  = '0'
        }
 
        #  18.9.77.10.2  (L1) Ensure 'Turn on e-mail scanning' is set to 'Enabled'
