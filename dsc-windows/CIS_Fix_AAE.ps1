@@ -73,15 +73,8 @@ Configuration CIS_Fix_AAE {
       #  2.2.8 (L1) Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only)
        UserRightsAssignment AllowlogonthroughRemoteDesktopServices {
           Policy       = 'Allow_log_on_through_Remote_Desktop_Services'
-          Identity     = 'Administrators'
+          Identity     = 'Administrators, Remote Desktop Users'
        }
-
-      #  2.2.9 (L1) Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators, Remote Desktop Users' (MS only)
-      # WARNING! Duplicate.
-      #  UserRightsAssignment AllowlogonthroughRemoteDesktopServices {
-      #     Policy       = 'Allow_log_on_through_Remote_Desktop_Services'
-      #     Identity     = 'Administrators, Remote Desktop Users'
-      #  }
 
       #  2.2.10 (L1) Ensure 'Back up files and directories' is set to 'Administrators'
        UserRightsAssignment Backupfilesanddirectories {
@@ -131,25 +124,11 @@ Configuration CIS_Fix_AAE {
           Identity     = 'Administrators'
        }
 
-      #  2.2.18 (L1) Ensure 'Create symbolic links' is set to 'Administrators, NT VIRTUAL MACHINE\Virtual Machines' (MS only)
-      #  WARNING! Duplicate.
-      #  UserRightsAssignment Createsymboliclinks {
-      #     Policy       = 'Create_symbolic_links'
-      #     Identity     = 'Administrators, NT VIRTUAL MACHINE\Virtual Machines'
-      #  }
-
       #  2.2.19 (L1) Ensure 'Debug programs' is set to 'Administrators'
        UserRightsAssignment Debugprograms {
           Policy       = 'Debug_programs'
           Identity     = 'Administrators'
        }
-
-      #  2.2.20 (L1) Ensure 'Deny access to this computer from the network' is set to 'Guests' (DC only)
-      # WARNING! Duplicate
-      #  UserRightsAssignment Denyaccesstothiscomputerfromthenetwork {
-      #     Policy       = 'Deny_access_to_this_computer_from_the_network'
-      #     Identity     = 'Guests'
-      #  }
 
       #  2.2.21 (L1) Ensure 'Deny access to this computer from the network' is set to 'Guests, Local account and member of Administrators group' (MS only)
        UserRightsAssignment Denyaccesstothiscomputerfromthenetwork {
@@ -372,7 +351,7 @@ Configuration CIS_Fix_AAE {
          # 2.3.7.3 (L1) Ensure 'Interactive logon: Machine inactivity limit' is set to '900 or fewer second(s), but not 0'
          Interactive_logon_Machine_inactivity_limit = '900' 
          # 2.3.7.4 (L1) Configure 'Interactive logon: Message text for users attempting to log on' 
-         Interactive_logon_Message_text_for_users_attempting_to_log_on = 'This computer system is the property of Acme Corporation and is for authorised use by employees and designated contractors only. By continuing to use this system you indicate your awareness of and consent to these terms and conditions of use.It is the users responsibility to LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this notice.'
+         Interactive_logon_Message_text_for_users_attempting_to_log_on = 'This computer system is the property of the organisation and is for authorised use by employees and designated contractors only. By continuing to use this system you indicate your awareness of and consent to these terms and conditions of use. It is the users responsibility to LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this notice.'
          # 2.3.7.5 (L1) Configure 'Interactive logon: Message title for users attempting to log on'
          #Interactive_logon_Message_title_for_users_attempting_to_log_on = '<Logon Warning>'
          Interactive_logon_Message_title_for_users_attempting_to_log_on = 'Logon Warning'
