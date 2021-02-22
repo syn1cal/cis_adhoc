@@ -21,7 +21,7 @@ Configuration CIS_Fix_AAE {
             # 1.1.3 (L1) Ensure 'Minimum password age' is set to '1 or more day(s)'
             Minimum_Password_Age                        = 1
             # 1.1.4 (L1) Ensure 'Minimum password length' is set to '14 or more character(s)'
-            Minimum_Password_Length                     = 10
+            Minimum_Password_Length                     = 14
             # 1.1.5 (L1) Ensure 'Password must meet complexity requirements' is set to 'Enabled'
             Password_must_meet_complexity_requirements  = 'Enabled'
             # 1.1.6 (L1) Ensure 'Store passwords using reversible encryption' is set to 'Disabled'
@@ -38,12 +38,6 @@ Configuration CIS_Fix_AAE {
        UserRightsAssignment AccessCredentialManagerasatrustedcaller {
           Policy       = 'Access_Credential_Manager_as_a_trusted_caller'
           Identity     = ''
-       }
-
-       #  2.2.2 (L1) Ensure 'Access this computer from the network' is set to 'Administrators, Authenticated Users, ENTERPRISE DOMAIN CONTROLLERS' (DC only)
-       UserRightsAssignment Accessthiscomputerfromthenetwork {
-          Policy       = 'Access_this_computer_from_the_network'
-          Identity     = 'Administrators, Authenticated Users, ENTERPRISE DOMAIN CONTROLLERS'
        }
 
        #  2.2.4 (L1) Ensure 'Act as part of the operating system' is set to 'No One'
@@ -63,18 +57,6 @@ Configuration CIS_Fix_AAE {
          Policy       = 'Adjust_memory_quotas_for_a_process'
          Identity     = 'Administrators, LOCAL SERVICE, NETWORK SERVICE'
       }
-
-      #  2.2.7 (L1) Ensure 'Allow log on locally' is set to 'Administrators'
-       UserRightsAssignment Allowlogonlocally {
-          Policy       = 'Allow_log_on_locally'
-          Identity     = 'Administrators'
-       }
-
-      #  2.2.8 (L1) Ensure 'Allow log on through Remote Desktop Services' is set to 'Administrators' (DC only)
-       UserRightsAssignment AllowlogonthroughRemoteDesktopServices {
-          Policy       = 'Allow_log_on_through_Remote_Desktop_Services'
-          Identity     = 'Administrators, Remote Desktop Users'
-       }
 
       #  2.2.10 (L1) Ensure 'Back up files and directories' is set to 'Administrators'
        UserRightsAssignment Backupfilesanddirectories {
@@ -130,12 +112,6 @@ Configuration CIS_Fix_AAE {
           Identity     = 'Administrators'
        }
 
-      #  2.2.21 (L1) Ensure 'Deny access to this computer from the network' is set to 'Guests, Local account and member of Administrators group' (MS only)
-       UserRightsAssignment Denyaccesstothiscomputerfromthenetwork {
-          Policy       = 'Deny_access_to_this_computer_from_the_network'
-          Identity     = 'Guests, Local account, Administrators'
-       }
-
       #  2.2.22 (L1) Ensure 'Deny log on as a batch job' to include 'Guests'
        UserRightsAssignment Denylogonasabatchjob {
           Policy       = 'Deny_log_on_as_a_batch_job'
@@ -159,20 +135,6 @@ Configuration CIS_Fix_AAE {
           Policy       = 'Deny_log_on_through_Remote_Desktop_Services'
           Identity     = 'Guests'
        }
-
-      #  2.2.26 (L1) Ensure 'Deny log on through Remote Desktop Services' is set to 'Guests, Local account' (MS only)
-      #WARNING! Duplicate.
-      #  UserRightsAssignment DenylogonthroughRemoteDesktopServices2 {
-      #     Policy       = 'Deny_log_on_through_Remote_Desktop_Services2'
-      #     Identity     = 'Guests, Local account'
-      #  }
-
-      #  2.2.27 (L1) Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'Administrators' (DC only)
-      # WARNING! Duplicate
-      #  UserRightsAssignment Enablecomputeranduseraccountstobetrustedfordelegation {
-      #     Policy       = 'Enable_computer_and_user_accounts_to_be_trusted_for_delegation'
-      #     Identity     = 'Administrators'
-      #  }
 
       #  2.2.28 (L1) Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'No One' (MS only)
        UserRightsAssignment Enablecomputeranduseraccountstobetrustedfordelegation {
@@ -198,14 +160,6 @@ Configuration CIS_Fix_AAE {
           Identity     = 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE'
        }
 
-      #  2.2.32 (L1) Ensure 'Impersonate a client after authentication' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' and (when the Web Server (IIS) Role with Web Services Role Service is installed) 'IIS_IUSRS' (MS only)
-      # WARNING! Duplicate
-      #  UserRightsAssignment Impersonateaclientafterauthentication {
-      #     Policy       = 'Impersonate_a_client_after_authentication'
-      #     Identity     = 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE' and (when the Web Server (IIS) Role with Web Services Role Service is installed) 'IIS_IUSRS'
-      #  }
-      
-
       #  2.2.33 (L1) Ensure 'Increase scheduling priority' is set to 'Administrators'
        UserRightsAssignment Increaseschedulingpriority {
           Policy       = 'Increase_scheduling_priority'
@@ -229,13 +183,6 @@ Configuration CIS_Fix_AAE {
           Policy       = 'Log_on_as_a_batch_job'
           Identity     = 'Administrators'
        }
-
-      #  2.2.37 (L1) Ensure 'Manage auditing and security log' is set to 'Administrators' and (when Exchange is running in the environment) `Exchange Servers' (DC only)
-      # WARNING! Duplicate
-      #  UserRightsAssignment Manageauditingandsecuritylog {
-      #     Policy       = 'Manage_auditing_and_security_log'
-      #     Identity     = ''Administrators' and (when Exchange is running in the environment) `Exchange Servers''
-      #  }
 
       #  2.2.38 (L1) Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only)
        UserRightsAssignment Manageauditingandsecuritylog {
@@ -314,24 +261,12 @@ Configuration CIS_Fix_AAE {
          Accounts_Guest_account_status = 'Disabled'
          # 2.3.1.4 (L1) Ensure 'Accounts: Limit local account use of blank passwords to console logon only' is set to 'Enabled'
          Accounts_Limit_local_account_use_of_blank_passwords_to_console_logon_only = 'Enabled'
-         # 2.3.1.5 (L1) Configure 'Accounts: Rename administrator account'
-         Accounts_Rename_administrator_account = 'User_Adm' # WARNING! Any value different from Administrator
-         # 2.3.1.6 (L1) Configure 'Accounts: Rename guest account'
-         Accounts_Rename_guest_account = 'User_Guest' # WARNING! Any value different from Guest
          # 2.3.2.1 (L1) Ensure 'Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings' is set to 'Enabled'
          Audit_Force_audit_policy_subcategory_settings_Windows_Vista_or_later_to_override_audit_policy_category_settings = 'Enabled'
-         # 2.3.2.2 (L1) Ensure 'Audit: Shut down system immediately if unable to log security audits' is set to 'Disabled'
-         Audit_Shut_down_system_immediately_if_unable_to_log_security_audits = 'Disabled'
          # 2.3.4.1 (L1) Ensure 'Devices: Allowed to format and eject removable media' is set to 'Administrators'
          Devices_Allowed_to_format_and_eject_removable_media = 'Administrators'
          # 2.3.4.2 (L1) Ensure 'Devices: Prevent users from installing printer drivers' is set to 'Enabled'
          Devices_Prevent_users_from_installing_printer_drivers = 'Enabled'
-         # 2.3.5.1 (L1) Ensure 'Domain controller: Allow server operators to schedule tasks' is set to 'Disabled' (DC only)
-         Domain_controller_Allow_server_operators_to_schedule_tasks = 'Disabled'
-         # 2.3.5.2 (L1) Ensure 'Domain controller: LDAP server signing requirements' is set to 'Require signing' (DC only) 
-         Domain_controller_LDAP_server_signing_requirements = 'Require signing'
-         # 2.3.5.3 (L1) Ensure 'Domain controller: Refuse machine account password changes' is set to 'Disabled' (DC only) 
-         Domain_controller_Refuse_machine_account_password_changes = 'Disabled'
          # 2.3.6.1 (L1) Ensure 'Domain member: Digitally encrypt or sign secure channel data (always)' is set to 'Enabled'
          Domain_member_Digitally_encrypt_or_sign_secure_channel_data_always = 'Enabled' 
          # 2.3.6.2 (L1) Ensure 'Domain member: Digitally encrypt secure channel data (when possible)' is set to 'Enabled'
@@ -471,29 +406,11 @@ Configuration CIS_Fix_AAE {
            ValueData   = '1'
        }
 
-       #  9.1.2 (L1) Ensure 'Windows Firewall: Domain: Inbound connections' is set to 'Block (default)'
-       Registry 'DefaultInboundActionDomain' {
-           Ensure      = 'Present'
-           Key         = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\DefaultInboundAction'
-           ValueName   = 'DefaultInboundAction'
-           ValueType   = 'DWord'
-           ValueData   = '1'
-       }
-
        #  9.1.3 (L1) Ensure 'Windows Firewall: Domain: Outbound connections' is set to 'Allow (default)'
        Registry 'DefaultOutboundActionDomain' {
            Ensure      = 'Present'
            Key         = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\DefaultOutboundAction'
            ValueName   = 'DefaultOutboundAction'
-           ValueType   = 'DWord'
-           ValueData   = '0'
-       }
-
-       # 9.1.4 (L1) Ensure 'Windows Firewall: Domain: Settings: Display a notification' is set to 'No'
-       Registry 'DisableNotificationsDomain' {
-           Ensure      = 'Present'
-           Key         = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\DisableNotifications'
-           ValueName   = 'DisableNotifications'
            ValueType   = 'DWord'
            ValueData   = '0'
        }
@@ -530,24 +447,6 @@ Configuration CIS_Fix_AAE {
           Ensure       = 'Present'
           Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile\Logging\LogSuccessfulConnections'
           ValueName    = 'LogSuccessfulConnections'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
-
-       #  9.2.1 (L1) Ensure 'Windows Firewall: Private: Firewall state' is set to 'On (recommended)'
-       Registry 'EnableFirewallPrivate' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
-          ValueName    = 'EnableFirewall'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
-
-       #  9.2.2 (L1) Ensure 'Windows Firewall: Private: Inbound connections' is set to 'Block (default)'
-       Registry 'DefaultInboundActionPrivate' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PrivateProfile'
-          ValueName    = 'DefaultInboundAction'
           ValueType    = 'DWord'
           ValueData    = '1'
        }
@@ -615,15 +514,6 @@ Configuration CIS_Fix_AAE {
           ValueData    = '1'
        }
 
-       #  9.3.2 (L1) Ensure 'Windows Firewall: Public: Inbound connections' is set to 'Block (default)'
-       Registry 'DefaultInboundActionPublic' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
-          ValueName    = 'DefaultInboundAction'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
-
        #  9.3.3 (L1) Ensure 'Windows Firewall: Public: Outbound connections' is set to 'Allow (default)'
        Registry 'DefaultOutboundActionPublic' {
           Ensure       = 'Present'
@@ -638,15 +528,6 @@ Configuration CIS_Fix_AAE {
           Ensure       = 'Present'
           Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
           ValueName    = 'DisableNotifications'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
-       #  9.3.5 (L1) Ensure 'Windows Firewall: Public: Settings: Apply local firewall rules' is set to 'No'
-       Registry 'AllowLocalPolicyMerge' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
-          ValueName    = 'AllowLocalPolicyMerge'
           ValueType    = 'DWord'
           ValueData    = '0'
        }
@@ -1144,15 +1025,6 @@ Configuration CIS_Fix_AAE {
           ValueData    = '0'
        }
 
-       #  18.1.3 (L2) Ensure 'Allow Online Tips' is set to 'Disabled'
-       Registry 'AllowOnlineTips' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer'
-          ValueName    = 'AllowOnlineTips'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
        #  18.2.2 (L1) Ensure 'Do not allow password expiration time longer than required by policy' is set to 'Enabled' (MS only)
        Registry 'PwdExpirationProtectionEnabled' {
           Ensure       = 'Present'
@@ -1162,15 +1034,6 @@ Configuration CIS_Fix_AAE {
           ValueData    = '1'
        }
 
-       #  18.2.3 (L1) Ensure 'Enable Local Admin Password Management' is set to 'Enabled' (MS only)
-       Registry 'AdmPwdEnabled' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft Services\AdmPwd'
-          ValueName    = 'AdmPwdEnabled'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
-       
        #  18.2.4 (L1) Ensure 'Password Settings: Password Complexity' is set to 'Enabled: Large letters + small letters + numbers + special characters' (MS only)
        Registry 'PasswordComplexity' {
           Ensure       = 'Present'
@@ -1296,29 +1159,11 @@ Configuration CIS_Fix_AAE {
           ValueData    = '0'
        }
 
-       #  18.4.5 (L2) Ensure 'MSS: (KeepAliveTime) How often keep-alive packets are sent in milliseconds' is set to 'Enabled: 300,000 or 5 minutes (recommended)'
-       Registry 'KeepAliveTime' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters'
-          ValueName    = 'KeepAliveTime'
-          ValueType    = 'DWord'
-          ValueData    = '300000'
-       }
-
        #  18.4.6 (L1) Ensure 'MSS: (NoNameReleaseOnDemand) Allow the computer to ignore NetBIOS name release requests except from WINS servers' is set to 'Enabled
        Registry 'NoNameReleaseOnDemand' {
           Ensure       = 'Present'
           Key          = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NetBT\Parameters'
           ValueName    = 'NoNameReleaseOnDemand'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
-
-       #  18.4.7 (L2) Ensure 'MSS: (PerformRouterDiscovery) Allow IRDP to detect and configure Default Gateway addresses (could lead to DoS)' is set to 'Disabled'
-       Registry 'PerformRouterDiscovery' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters'
-          ValueName    = 'PerformRouterDiscovery'
           ValueType    = 'DWord'
           ValueData    = '1'
        }
@@ -1341,24 +1186,6 @@ Configuration CIS_Fix_AAE {
           ValueData    = '5'
        }
 
-       #  18.4.10 (L2) Ensure 'MSS: (TcpMaxDataRetransmissions IPv6) How many times unacknowledged data is retransmitted' is set to 'Enabled: 3'
-       Registry 'TcpMaxDataRetransmissions' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TCPIP6\Parameters'
-          ValueName    = 'TcpMaxDataRetransmissions'
-          ValueType    = 'DWord'
-          ValueData    = '5'
-       }
-
-       #  18.4.11 (L2) Ensure 'MSS: (TcpMaxDataRetransmissions) How many times unacknowledged data is retransmitted' is set to 'Enabled: 3'
-       Registry 'TcpMaxDataRetransmissions2' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters'
-          ValueName    = 'TcpMaxDataRetransmissions'
-          ValueType    = 'DWord'
-          ValueData    = '5'
-       }
-
        #  18.4.12 (L1) Ensure 'MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning' is set to 'Enabled: 90% or less'
        Registry 'WarningLevel' {
           Ensure       = 'Present'
@@ -1377,15 +1204,6 @@ Configuration CIS_Fix_AAE {
           ValueData    = '0'
        }
 
-       #  18.5.5.1 (L2) Ensure 'Enable Font Providers' is set to 'Disabled'
-       Registry 'EnableFontProviders' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System'
-          ValueName    = 'EnableFontProviders'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
        #  18.5.8.1 (L1) Ensure 'Enable insecure guest logons' is set to 'Disabled'
        Registry 'AllowInsecureGuestAuth' {
           Ensure       = 'Present'
@@ -1393,87 +1211,6 @@ Configuration CIS_Fix_AAE {
           ValueName    = 'AllowInsecureGuestAuth'
           ValueType    = 'DWord'
           ValueData    = '0'
-       }
-
-       #  18.5.9.1 (L2) Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled'
-       Registry 'AllowLLTDIOOnDomain' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\LLTD'
-          ValueName    = 'AllowLLTDIOOnDomain'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-       
-       #  18.5.9.1 (L2) Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled'
-       Registry 'AllowLLTDIOOnPublicNet' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\LLTD'
-          ValueName    = 'AllowLLTDIOOnPublicNet'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-       
-       #  18.5.9.1 (L2) Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled'
-       Registry 'EnableLLTDIO' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\LLTD'
-          ValueName    = 'EnableLLTDIO'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-       
-       #  18.5.9.1 (L2) Ensure 'Turn on Mapper I/O (LLTDIO) driver' is set to 'Disabled'
-       Registry 'ProhibitLLTDIOOnPrivateNet' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\LLTD'
-          ValueName    = 'ProhibitLLTDIOOnPrivateNet'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
-       #  18.5.9.2 (L2) Ensure 'Turn on Responder (RSPNDR) driver' is set to 'Disabled'
-       Registry 'AllowRspndrOnDomain' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\LLTD'
-          ValueName    = 'AllowRspndrOnDomain'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
-       #  18.5.9.2 (L2) Ensure 'Turn on Responder (RSPNDR) driver' is set to 'Disabled'
-       Registry 'AllowRspndrOnPublicNet' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\LLTD'
-          ValueName    = 'AllowRspndrOnPublicNet'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
-       #  18.5.9.2 (L2) Ensure 'Turn on Responder (RSPNDR) driver' is set to 'Disabled'
-       Registry 'EnableRspndr' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\LLTD'
-          ValueName    = 'EnableRspndr'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
-       #  18.5.9.2 (L2) Ensure 'Turn on Responder (RSPNDR) driver' is set to 'Disabled'
-       Registry 'ProhibitRspndrOnPrivateNet' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\LLTD'
-          ValueName    = 'ProhibitRspndrOnPrivateNet'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
-       #  18.5.10.2 (L2) Ensure 'Turn off Microsoft Peer-to-Peer Networking Services' is set to 'Enabled'
-       Registry 'Disabled' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Peernet'
-          ValueName    = 'Disabled'
-          ValueType    = 'DWord'
-          ValueData    = '1'
        }
 
        #  18.5.11.2 (L1) Ensure 'Prohibit installation and configuration of Network Bridge on your DNS domain network' is set to 'Enabled'
@@ -1530,60 +1267,6 @@ Configuration CIS_Fix_AAE {
           ValueData    = '255'
        }
 
-       #  18.5.20.1 (L2) Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled'
-       Registry 'EnableRegistrars' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WCN\Registrars'
-          ValueName    = 'EnableRegistrars'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
-       #  18.5.20.1 (L2) Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled'
-       Registry 'DisableUPnPRegistrar' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WCN\Registrars'
-          ValueName    = 'DisableUPnPRegistrar'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
-       #  18.5.20.1 (L2) Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled'
-       Registry 'DisableInBand802DOT11Registrar' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WCN\Registrars'
-          ValueName    = 'DisableInBand802DOT11Registrar'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
-       #  18.5.20.1 (L2) Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled'
-       Registry 'DisableFlashConfigRegistrar' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WCN\Registrars'
-          ValueName    = 'DisableFlashConfigRegistrar'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-
-       #  18.5.20.1 (L2) Ensure 'Configuration of wireless settings using Windows Connect Now' is set to 'Disabled'
-       Registry 'DisableWPDRegistrar' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WCN\Registrars'
-          ValueName    = 'DisableWPDRegistrar'
-          ValueType    = 'DWord'
-          ValueData    = '0'
-       }
-       
-       #  18.5.20.2 (L2) Ensure 'Prohibit access of the Windows Connect Nowwizards' is set to 'Enabled'
-       Registry 'DisableWcnUi' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WCN\UI'
-          ValueName    = 'DisableWcnUi'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
-
        #  18.5.21.1 (L1) Ensure 'Minimize the number of simultaneous connections to the Internet or a Windows Domain' is set to 'Enabled'
        Registry 'fMinimizeConnections' {
           Ensure     = 'Present'
@@ -1593,24 +1276,6 @@ Configuration CIS_Fix_AAE {
           ValueData  = '1'
        }
        
-       #  18.5.21.2 (L2) Ensure 'Prohibit connection to non-domain networks when connected to domain authenticated network' is set to 'Enabled'
-       Registry 'fBlockNonDomain' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy'
-          ValueName  = 'fBlockNonDomain'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       # 18.7.1.1 (L2) Ensure 'Turn off notifications network usage' is set to 'Enabled'
-       Registry 'notificationsnetworkusage' {
-         Ensure     = 'Present'
-         Key        = 'KEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications'
-         ValueName  = 'NoCloudApplicationNotification'
-         ValueType  = 'DWord'
-         ValueData  = '1'
-      }
-
        #  18.8.3.1 (L1) Ensure 'Include command line in process creation events' is set to 'Disabled'
        Registry 'ProcessCreationIncludeCmdLine_Enabled' {
           Ensure     = 'Present'
@@ -1628,69 +1293,6 @@ Configuration CIS_Fix_AAE {
           ValueType  = 'DWord'
           ValueData  = '1'
        }
-
-       #  18.8.5.1 (NG) Ensure 'Turn On Virtualization Based Security' is set to 'Enabled' (MS Only)
-       Registry 'EnableVirtualizationBasedSecurity' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
-          ValueName  = 'EnableVirtualizationBasedSecurity'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.8.5.2 (NG) Ensure 'Turn On Virtualization Based Security: Select Platform Security Level' is set to 'Secure Boot and DMA Protection' (MS Only)
-       Registry 'RequirePlatformSecurityFeatures' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
-          ValueName  = 'RequirePlatformSecurityFeatures'
-          ValueType  = 'DWord'
-          ValueData  = '3'
-       }
-
-       #  18.8.5.3 (NG) Ensure 'Turn On Virtualization Based Security: Virtualization Based Protection of Code Integrity' is set to 'Enabled with UEFI lock' (MS Only)
-       Registry 'HypervisorEnforcedCodeIntegrity' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
-          ValueName  = 'HypervisorEnforcedCodeIntegrity'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.8.5.4 (NG) Ensure 'Turn On Virtualization Based Security: Require UEFI Memory Attributes Table' is set to 'True (checked)' (MS Only)
-       Registry 'HVCIMATRequired' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
-          ValueName  = 'HVCIMATRequired'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.8.5.5 (NG) Ensure 'Turn On Virtualization Based Security: Credential Guard Configuration' is set to 'Enabled with UEFI lock' (MS Only)
-       Registry 'LsaCfgFlags' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
-          ValueName  = 'LsaCfgFlags'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       # 18.8.5.6 (NG) Ensure 'Turn On Virtualization Based Security: Credential Guard Configuration' is set to 'Disabled' (DC Only)
-      #  Registry 'LsaCfgFlags' {
-      #    Ensure     = 'Present'
-      #    Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
-      #    ValueName  = 'LsaCfgFlags'
-      #    ValueType  = 'DWord'
-      #    ValueData  = '0'
-      # }
-
-       # 18.8.5.7 (NG) Ensure 'Turn On Virtualization Based Security: Secure Launch Configuration' is set to 'Enabled'
-       Registry 'ConfigureSystemGuardLaunch' {
-         Ensure     = 'Present'
-         Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard'
-         ValueName  = 'ConfigureSystemGuardLaunch'
-         ValueType  = 'DWord'
-         ValueData  = '1'
-      }
 
        #  18.8.14.1 (L1) Ensure 'Boot-Start Driver Initialization Policy' is set to 'Enabled: Good, unknown and bad but critical'
        Registry 'DriverLoadPolicy' {
@@ -1746,33 +1348,6 @@ Configuration CIS_Fix_AAE {
           ValueData  = '0'
        }
 
-       #  18.8.22.1.2 (L2) Ensure 'Turn off handwriting personalization data sharing' is set to 'Enabled'
-       Registry 'PreventHandwritingDataSharing' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\TabletPC'
-          ValueName  = 'PreventHandwritingDataSharing'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.8.22.1.3 (L2) Ensure 'Turn off handwriting recognition error reporting' is set to 'Enabled'
-       Registry 'PreventHandwritingErrorReports' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\HandwritingErrorReports'
-          ValueName  = 'PreventHandwritingErrorReports'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.8.22.1.4 (L2) Ensure 'Turn off Internet Connection Wizard if URL connection is referring to Microsoft.com' is set to 'Enabled'
-       Registry 'ExitOnMSICW' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Internet Connection Wizard'
-          ValueName  = 'ExitOnMSICW'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
        #  18.8.22.1.5 (L1) Ensure 'Turn off Internet download for Web publishing and online ordering wizards' is set to 'Enabled'
        Registry 'NoWebServices' {
           Ensure     = 'Present'
@@ -1791,96 +1366,6 @@ Configuration CIS_Fix_AAE {
           ValueData  = '1'
        }
 
-       #  18.8.22.1.7 (L2) Ensure 'Turn off Registration if URL connection is referring to Microsoft.com' is set to 'Enabled'
-       Registry 'NoRegistration' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Registration Wizard Control'
-          ValueName  = 'NoRegistration'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.8.22.1.8 (L2) Ensure 'Turn off Search Companion content file updates' is set to 'Enabled'
-       Registry 'DisableContentFileUpdates' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\SearchCompanion'
-          ValueName  = 'DisableContentFileUpdates'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.8.22.1.9 (L2) Ensure 'Turn off the "Order Prints" picture task' is set to 'Enabled'
-       Registry 'NoOnlinePrintsWizard' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer'
-          ValueName  = 'NoOnlinePrintsWizard'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.8.22.1.10 (L2) Ensure 'Turn off the "Publish to Web" task for files and folders' is set to 'Enabled'
-       Registry 'NoPublishingWizard' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer'
-          ValueName  = 'NoPublishingWizard'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.8.22.1.11 (L2) Ensure 'Turn off the Windows Messenger Customer Experience Improvement Program' is set to 'Enabled'
-       Registry 'CEIP' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Messenger\Client'
-          ValueName  = 'CEIP'
-          ValueType  = 'DWord'
-          ValueData  = '2'
-       }
-
-       #  18.8.22.1.12 (L2) Ensure 'Turn off Windows Customer Experience Improvement Program' is set to 'Enabled'
-       Registry 'CEIPEnable' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\SQMClient\Windows'
-          ValueName  = 'CEIPEnable'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
-       #  18.8.22.1.13 (L2) Ensure 'Turn off Windows Error Reporting' is set to 'Enabled'
-       Registry 'Disabled2' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting'
-          ValueName  = 'Disabled'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.8.22.1.13 (L2) Ensure 'Turn off Windows Error Reporting' is set to 'Enabled'
-       Registry 'DoReport' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\PCHealth\ErrorReporting'
-          ValueName  = 'DoReport'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
-       #  18.8.25.1 (L2) Ensure 'Support device authentication using certificate' is set to 'Enabled: Automatic'
-       Registry 'DevicePKInitBehavior' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\kerberos\parameters'
-          ValueName  = 'DevicePKInitBehavior'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
-       #  18.8.25.1 (L2) Ensure 'Support device authentication using certificate' is set to 'Enabled: Automatic'
-       Registry 'DevicePKInitEnabled' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\kerberos\parameters'
-          ValueName  = 'DevicePKInitEnabled'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
        # 18.8.26.1 (L1) Ensure 'Enumeration policy for external devices incompatible with Kernel DMA Protection' is set to 'Enabled: Block All'
        Registry 'DeviceEnumerationPolicy' {
          Ensure     = 'Present'
@@ -1889,15 +1374,6 @@ Configuration CIS_Fix_AAE {
          ValueType  = 'DWord'
          ValueData  = '0'
       }       
-
-       #  18.8.27.1 (L2) Ensure 'Disallow copying of user input methods to the system account for sign-in' is set to 'Enabled'
-       Registry 'BlockUserInputMethodsForSignIn' {
-         Ensure     = 'Present'
-         Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\ControlPanel\International'
-         ValueName  = 'BlockUserInputMethodsForSignIn'
-         ValueType  = 'DWord'
-         ValueData  = '1'
-      }
 
        #  18.8.28.1 (L1) Ensure 'Block user from showing account details on signin' is set to 'Enabled'
        Registry 'BlockUserFromShowingAccountDetailsOnSignin' {
@@ -2034,69 +1510,6 @@ Configuration CIS_Fix_AAE {
           ValueData  = '1'
        }
 
-       #  18.8.37.2 (L2) Ensure 'Restrict Unauthenticated RPC clients' is set to 'Enabled: Authenticated' (MS only)
-       Registry 'RestrictRemoteClients' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsNT\Rpc'
-          ValueName  = 'RestrictRemoteClients'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.8.47.5.1 (L2) Ensure 'Microsoft Support Diagnostic Tool: Turn on MSDT interactive communication with support provider' is set to 'Disabled'
-       Registry 'DisableQueryRemoteServer' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\ScriptedDiagnosticsProvider\Policy'
-          ValueName  = 'DisableQueryRemoteServer'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
-       #  18.8.47.11.1 (L2) Ensure 'Enable/Disable PerfTrack' is set to 'Disabled'
-       Registry 'ScenarioExecutionEnabled' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WDI\{9c5a40da-b965-4fc3-8781-88dd50a6299d}'
-          ValueName  = 'ScenarioExecutionEnabled'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
-       #  18.8.49.1 (L2) Ensure 'Turn off the advertising ID' is set to 'Enabled'
-       Registry 'DisabledByGroupPolicy' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\policies\Microsoft\Windows\AdvertisingInfo'
-          ValueName  = 'DisabledByGroupPolicy'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.8.52.1.1 (L2) Ensure 'Enable Windows NTP Client' is set to 'Enabled'
-       Registry 'EnableNTPClient' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\W32Time\TimeProviders\NtpClient'
-          ValueName  = 'Enabled'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.8.52.1.2 (L2) Ensure 'Enable Windows NTP Server' is set to 'Disabled' (MS only)
-       Registry 'EnableNTPServer' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\W32Time\TimeProviders\NtpServer'
-          ValueName  = 'Enabled'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.9.4.1 (L2) Ensure 'Allow a Windows app to share application data between users' is set to 'Disabled'
-       Registry 'AllowSharedLocalAppData' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\AppModel\StateManager'
-          ValueName  = 'AllowSharedLocalAppData'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
        #  18.9.6.1 (L1) Ensure 'Allow Microsoft accounts to be optional' is set to 'Enabled'
        Registry 'MSAOptional' {
           Ensure     = 'Present'
@@ -2192,15 +1605,6 @@ Configuration CIS_Fix_AAE {
           Ensure     = 'Present'
           Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection'
           ValueName  = 'AllowTelemetry'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
-       #  18.9.16.2 (L2) Ensure 'Configure Authenticated Proxy usage for the Connected User Experience and Telemetry service' is set to 'Enabled: Disable Authenticated Proxy usage'
-       Registry 'DisableEnterpriseAuthProxy' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection'
-          ValueName  = 'DisableEnterpriseAuthProxy'
           ValueType  = 'DWord'
           ValueData  = '0'
        }
@@ -2322,24 +1726,6 @@ Configuration CIS_Fix_AAE {
           ValueData  = '0'
        }
 
-       #  18.9.39.2 (L2) Ensure 'Turn off location' is set to 'Enabled'
-       Registry 'DisableLocation' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors'
-          ValueName  = 'DisableLocation'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.9.43.1 (L2) Ensure 'Allow Message Service Cloud Sync' is set to 'Disabled'
-       Registry 'AllowMessageSync' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Messaging'
-          ValueName  = 'AllowMessageSync'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
        #  18.9.44.1 (L1) Ensure 'Block all consumer Microsoft account user authentication' is set to 'Enabled'
        Registry 'DisableUserAuth' {
           Ensure     = 'Present'
@@ -2376,38 +1762,11 @@ Configuration CIS_Fix_AAE {
           ValueData  = '1'
        }
 
-       #  18.9.59.3.3.1 (L2) Ensure 'Do not allow COM port redirection' is set to 'Enabled'
-       Registry 'fDisableCcm' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services'
-          ValueName  = 'fDisableCcm'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
        #  18.9.59.3.3.2 (L1) Ensure 'Do not allow drive redirection' is set to 'Enabled'
        Registry 'fDisableCdm' {
           Ensure     = 'Present'
           Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services'
           ValueName  = 'fDisableCdm'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.9.59.3.3.3 (L2) Ensure 'Do not allow LPT port redirection' is set to 'Enabled'
-       Registry 'fDisableLPT' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services'
-          ValueName  = 'fDisableLPT'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.9.59.3.3.4 (L2) Ensure 'Do not allow supported Plug and Play device redirection' is set to 'Enabled'
-       Registry 'fDisablePNPRedir' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services'
-          ValueName  = 'fDisablePNPRedir'
           ValueType  = 'DWord'
           ValueData  = '1'
        }
@@ -2457,24 +1816,6 @@ Configuration CIS_Fix_AAE {
           ValueData  = '3'
        }
 
-       #  18.9.59.3.10.1 (L2) Ensure 'Set time limit for active but idle Remote Desktop Services sessions' is set to 'Enabled: 15 minutes or less'
-       Registry 'MaxIdleTime' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services'
-          ValueName  = 'MaxIdleTime'
-          ValueType  = 'DWord'
-          ValueData  = '900000'
-       }
-
-       #  18.9.59.3.10.2 (L2) Ensure 'Set time limit for disconnected sessions' is set to 'Enabled: 1 minute'
-       Registry 'MaxDisconnectionTime' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services'
-          ValueName  = 'MaxDisconnectionTime'
-          ValueType  = 'DWord'
-          ValueData  = '60000'
-       }
-
        #  18.9.59.3.11.1 (L1) Ensure 'Do not delete temp folders upon exit' is set to 'Disabled'
        Registry 'DeleteTempDirsOnExit' {
           Ensure     = 'Present'
@@ -2498,15 +1839,6 @@ Configuration CIS_Fix_AAE {
           Ensure     = 'Present'
           Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\InternetExplorer\Feeds'
           ValueName  = 'DisableEnclosureDownload'
-          ValueType  = 'DWord'
-          ValueData  = '1'
-       }
-
-       #  18.9.61.2 (L2) Ensure 'Allow Cloud Search' is set to 'Enabled: Disable Cloud Search'
-       Registry 'AllowCloudSearch' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsSearch'
-          ValueName  = 'AllowCloudSearch'
           ValueType  = 'DWord'
           ValueData  = '1'
        }
@@ -2664,15 +1996,6 @@ Configuration CIS_Fix_AAE {
           ValueData  = '1'
        }
 
-       #  18.9.77.14 (L1) Ensure 'Configure detection for potentially unwanted applications' is set to 'Enabled: Block'
-       Registry 'PUAProtection' {
-         Ensure     = 'Present'
-         Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsDefender'
-         ValueName  = 'PUAProtection'
-         ValueType  = 'DWord'
-         ValueData  = '2'
-      }
-
        #  18.9.77.15 (L1) Ensure 'Turn off Windows Defender AntiVirus' is set to 'Disabled'
        Registry 'DisableAntiSpyware' {
          Ensure     = 'Present'
@@ -2809,16 +2132,6 @@ Configuration CIS_Fix_AAE {
           ValueData  = '0'
        }
 
-       #  18.9.97.2.2 (L2) Ensure 'Allow remote server management through WinRM' is set to 'Disabled'
-       #MODIFY to 1 for testing
-      #  Registry 'AllowAutoConfig' {
-      #     Ensure     = 'Present'
-      #     Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WinRM\Service'
-      #     ValueName  = 'AllowAutoConfig'
-      #     ValueType  = 'DWord'
-      #     ValueData  = '0'
-      #  }
-
        #  18.9.97.2.3 (L1) Ensure 'Allow unencrypted traffic' is set to 'Disabled'
        Registry 'AllowUnencryptedTraffic2' {
           Ensure     = 'Present'
@@ -2833,15 +2146,6 @@ Configuration CIS_Fix_AAE {
           Ensure     = 'Present'
           Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WinRM\Service'
           ValueName  = 'DisableRunAs'
-          ValueType  = 'DWord'
-          ValueData  = '0'
-       }
-
-       #  18.9.98.1 (L2) Ensure 'Allow Remote Shell Access' is set to 'Disabled'
-       Registry 'AllowRemoteShellAccess' {
-          Ensure     = 'Present'
-          Key        = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WinRM\Service\WinRS'
-          ValueName  = 'AllowRemoteShellAccess'
           ValueType  = 'DWord'
           ValueData  = '0'
        }
@@ -3054,23 +2358,6 @@ Configuration CIS_Fix_AAE {
           ValueData    = '1'
        }
 
-       #  19.7.26.1 (L1) Ensure 'Prevent users from sharing files within their profile.' is set to 'Enabled'
-       Registry 'NoInplaceSharing' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer'
-          ValueName    = 'NoInplaceSharing'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
-
-       #  19.7.45.2.1 (L2) Ensure 'Prevent Codec Download' is set to 'Enabled'
-       Registry 'PreventCodecDownload' {
-          Ensure       = 'Present'
-          Key          = 'HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\WindowsMediaPlayer'
-          ValueName    = 'PreventCodecDownload'
-          ValueType    = 'DWord'
-          ValueData    = '1'
-       }
    }
 }
 
