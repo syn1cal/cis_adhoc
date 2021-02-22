@@ -154,11 +154,6 @@ Configuration CIS_Fix_AAE {
           Identity     = ''
        }
 
-      #  2.2.36 (L2) Ensure 'Log on as a batch job' is set to 'Administrators' (DC Only)
-       UserRightsAssignment Logonasabatchjob {
-          Policy       = 'Log_on_as_a_batch_job'
-          Identity     = 'Administrators'
-       }
 
       #  2.2.38 (L1) Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only)
        UserRightsAssignment Manageauditingandsecuritylog {
@@ -170,12 +165,6 @@ Configuration CIS_Fix_AAE {
        UserRightsAssignment Modifyanobjectlabel {
           Policy       = 'Modify_an_object_label'
           Identity     = ''
-       }
-
-      # 2.2.40 (L1) Ensure 'Modify firmware environment values' is set to 'Administrators'
-       UserRightsAssignment Modifyfirmwareenvironmentvalues {
-          Policy       = 'Modify_firmware_environment_values'
-          Identity     = 'Administrators'
        }
 
       #  2.2.42 (L1) Ensure 'Profile single process' is set to 'Administrators'
@@ -196,11 +185,6 @@ Configuration CIS_Fix_AAE {
           Identity     = 'LOCAL SERVICE, NETWORK SERVICE'
        }
 
-      #  2.2.45 (L1) Ensure 'Restore files and directories' is set to 'Administrators'
-       UserRightsAssignment Restorefilesanddirectories {
-          Policy       = 'Restore_files_and_directories'
-          Identity     = 'Administrators'
-       }
 
       #  2.2.46 (L1) Ensure 'Shut down the system' is set to 'Administrators'
        UserRightsAssignment Shutdownthesystem {
@@ -217,8 +201,6 @@ Configuration CIS_Fix_AAE {
        #Source: https://github.com/PowerShell/SecurityPolicyDsc
        SecurityOption AccountSecurityOptions {
          Name                                   = 'AccountSecurityOptions'
-         # 2.3.1.1 (L1) Ensure 'Accounts: Administrator account status' is set to 'Disabled' (MS only)
-         Accounts_Administrator_account_status  = 'Disabled'
          # 2.3.1.2 (L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Microsoft accounts'
          Accounts_Block_Microsoft_accounts = 'Users cant add or log on with Microsoft accounts'
          # 2.3.1.3 (L1) Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)
@@ -298,16 +280,6 @@ Configuration CIS_Fix_AAE {
          #Network_access_Remotely_accessible_registry_paths_and_subpaths = 'System\CurrentControlSet\Control\Print\Printers, System\CurrentControlSet\Services\Eventlog, Software\Microsoft\OLAP Server, Software\Microsoft\Windows NT\CurrentVersion\Print, Software\Microsoft\Windows NT\CurrentVersion\Windows, System\CurrentControlSet\Control\ContentIndex, System\CurrentControlSet\Control\Terminal Server, System\CurrentControlSet\Control\Terminal Server\UserConfig, System\CurrentControlSet\Control\Terminal Server\DefaultUserConfiguration, Software\Microsoft\Windows NT\CurrentVersion\Perflib, System\CurrentControlSet\Services\SysmonLog'
          # 2.3.10.10 (L1) Ensure 'Network access: Restrict anonymous access to Named Pipes and Shares' is set to 'Enabled' 
          Network_access_Restrict_anonymous_access_to_Named_Pipes_and_Shares = 'Enabled' 
-         # 2.3.10.11 (L1) Ensure 'Network access: Restrict clients allowed to make remote calls to SAM' is set to 'Administrators: Remote Access: Allow' (MS only) 
-         #Network_access_Restrict_clients_allowed_to_make_remote_calls_to_SAM = 'Administrators: Remote Access: Allow'
-         Network_access_Restrict_clients_allowed_to_make_remote_calls_to_SAM = @(
-            MSFT_RestrictedRemoteSamSecurityDescriptor
-            {
-               Permission = 'Allow'
-               Identity   = 'Administrators'
-            }
-            )
-
          # 2.3.10.12 (L1) Ensure 'Network access: Shares that can be accessed anonymously' is set to 'None' 
          Network_access_Shares_that_can_be_accessed_anonymously = ''
          # 2.3.10.13 (L1) Ensure 'Network access: Sharing and security model for local accounts' is set to 'Classic - local users authenticate as themselves' 
