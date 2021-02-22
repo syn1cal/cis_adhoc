@@ -1,0 +1,5 @@
+- name: Harden Server
+  hosts: localhost
+
+  roles:
+    - ansible-ubuntu1804
