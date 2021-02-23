@@ -109,18 +109,12 @@ Configuration CIS_Fix_AAE {
        #Source: https://github.com/PowerShell/SecurityPolicyDsc
        SecurityOption AccountSecurityOptions {
          Name                                   = 'AccountSecurityOptions'
-         # 2.3.7.4 (L1) Configure 'Interactive logon: Message text for users attempting to log on' 
-         Interactive_logon_Message_text_for_users_attempting_to_log_on = 'This computer system is for authorised use by employees and designated contractors only. By continuing to use this system you indicate your awareness of and consent to these terms and conditions of use.It is the users responsibility to LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this notice.'
-
-       }
-
-       #Source: https://github.com/PowerShell/SecurityPolicyDsc
-       SecurityOption AccountSecurityOptions {
-         Name                                   = 'AccountSecurityOptions'
          # 2.3.1.2 (L1) Ensure 'Accounts: Block Microsoft accounts' is set to 'Users can't add or log on with Microsoft accounts'
          Accounts_Block_Microsoft_accounts = 'Users cant add or log on with Microsoft accounts'
          # 2.3.1.3 (L1) Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)
          Accounts_Guest_account_status = 'Disabled'
+         # 2.3.7.4 (L1) Configure 'Interactive logon: Message text for users attempting to log on' 
+         Interactive_logon_Message_text_for_users_attempting_to_log_on = 'This computer system is for authorised use by employees and designated contractors only. By continuing to use this system you indicate your awareness of and consent to these terms and conditions of use.It is the users responsibility to LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this notice.'
        }
 
        # 17.1.1 (L1) Ensure 'Audit Credential Validation' is set to 'Success and Failure'
