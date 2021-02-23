@@ -100,6 +100,12 @@ Configuration CIS_Fix_AAE {
           Identity     = ''
        }
 
+      #  2.2.36 (L2) Ensure 'Log on as a batch job' is set to 'Administrators' (DC Only)
+       UserRightsAssignment Logonasabatchjob {
+          Policy       = 'Log_on_as_a_batch_job'
+          Identity     = 'Administrators'
+       }
+
       #  2.2.38 (L1) Ensure 'Manage auditing and security log' is set to 'Administrators' (MS only)
        UserRightsAssignment Manageauditingandsecuritylog {
           Policy       = 'Manage_auditing_and_security_log'
@@ -113,10 +119,118 @@ Configuration CIS_Fix_AAE {
          Accounts_Block_Microsoft_accounts = 'Users cant add or log on with Microsoft accounts'
          # 2.3.1.3 (L1) Ensure 'Accounts: Guest account status' is set to 'Disabled' (MS only)
          Accounts_Guest_account_status = 'Disabled'
+         # 2.3.2.1 (L1) Ensure 'Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings' is set to 'Enabled'
+         Audit_Force_audit_policy_subcategory_settings_Windows_Vista_or_later_to_override_audit_policy_category_settings = 'Enabled'
+         # 2.3.2.2 (L1) Ensure 'Audit: Shut down system immediately if unable to log security audits' is set to 'Disabled'
+         Audit_Shut_down_system_immediately_if_unable_to_log_security_audits = 'Disabled'
          # 2.3.7.4 (L1) Configure 'Interactive logon: Message text for users attempting to log on' 
          Interactive_logon_Message_text_for_users_attempting_to_log_on = 'This computer system is for authorised use by employees and designated contractors only. By continuing to use this system you indicate your awareness of and consent to these terms and conditions of use.It is the users responsibility to LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this notice.'
          # 2.3.7.5 (L1) Configure 'Interactive logon: Message title for users attempting to log on'
          Interactive_logon_Message_title_for_users_attempting_to_log_on = 'Logon Warning'
+         # 2.3.7.6 (L2) Ensure 'Interactive logon: Number of previous logons to cache (in case domain controller is not available)' is set to '4 or fewer logon(s)' (MS only) 
+         Interactive_logon_Number_of_previous_logons_to_cache_in_case_domain_controller_is_not_available = '4'
+         # 2.3.7.7 (L1) Ensure 'Interactive logon: Prompt user to change password before expiration' is set to 'between 5 and 14 days'
+         Interactive_logon_Prompt_user_to_change_password_before_expiration = '14'
+         # 2.3.7.8 (L1) Ensure 'Interactive logon: Require Domain Controller Authentication to unlock workstation' is set to 'Enabled' (MS only)
+         Interactive_logon_Require_Domain_Controller_authentication_to_unlock_workstation = 'Enabled' 
+         # 2.3.7.9 (L1) Ensure 'Interactive logon: Smart card removal behavior' is set to 'Lock Workstation' or higher
+         Interactive_logon_Smart_card_removal_behavior = 'Lock Workstation'
+         # 2.3.8.1 (L1) Ensure 'Microsoft network client: Digitally sign communications (always)' is set to 'Enabled' 
+         Microsoft_network_client_Digitally_sign_communications_always = 'Enabled'
+         # 2.3.8.2 (L1) Ensure 'Microsoft network client: Digitally sign communications (if server agrees)' is set to 'Enabled' 
+         Microsoft_network_client_Digitally_sign_communications_if_server_agrees = 'Enabled'
+         # 2.3.8.3 (L1) Ensure 'Microsoft network client: Send unencrypted password to third-party SMB servers' is set to 'Disabled' 
+         Microsoft_network_client_Send_unencrypted_password_to_third_party_SMB_servers = 'Disabled'
+         # 2.3.9.1 (L1) Ensure 'Microsoft network server: Amount of idle time required before suspending session' is set to '15 or fewer minute(s), but not 0'
+         Microsoft_network_server_Amount_of_idle_time_required_before_suspending_session = '15' 
+         # 2.3.9.2 (L1) Ensure 'Microsoft network server: Digitally sign communications (always)' is set to 'Enabled' 
+         Microsoft_network_server_Digitally_sign_communications_always = 'Enabled'
+         # 2.3.9.3 (L1) Ensure 'Microsoft network server: Digitally sign communications (if client agrees)' is set to 'Enabled' 
+         Microsoft_network_server_Digitally_sign_communications_if_client_agrees = 'Enabled'
+         # 2.3.9.4 (L1) Ensure 'Microsoft network server: Disconnect clients when logon hours expire' is set to 'Enabled'
+         Microsoft_network_server_Disconnect_clients_when_logon_hours_expire = 'Enabled' 
+         # 2.3.9.5 (L1) Ensure 'Microsoft network server: Server SPN target name validation level' is set to 'Accept if provided by client' or higher (MS only) 
+         #Microsoft_network_server_Server_SPN_target_name_validation_level = 'Accept if provided by client'
+         Microsoft_network_server_Server_SPN_target_name_validation_level = 'Required from client'
+         # 2.3.10.1 (L1) Ensure 'Network access: Allow anonymous SID/Name translation' is set to 'Disabled'
+         Network_access_Allow_anonymous_SID_Name_translation = 'Disabled' 
+         # 2.3.10.2 (L1) Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts' is set to 'Enabled' (MS only) 
+         Network_access_Do_not_allow_anonymous_enumeration_of_SAM_accounts = 'Enabled'
+         # 2.3.10.3 (L1) Ensure 'Network access: Do not allow anonymous enumeration of SAM accounts and shares' is set to 'Enabled' (MS only) 
+         Network_access_Do_not_allow_anonymous_enumeration_of_SAM_accounts_and_shares = 'Enabled'
+         # 2.3.10.4 (L2) Ensure 'Network access: Do not allow storage of passwords and credentials for network authentication' is set to 'Enabled'
+         Network_access_Do_not_allow_storage_of_passwords_and_credentials_for_network_authentication = 'Enabled' 
+         # 2.3.10.5 (L1) Ensure 'Network access: Let Everyone permissions apply to anonymous users' is set to 'Disabled'
+         Network_access_Let_Everyone_permissions_apply_to_anonymous_users = 'Disabled' 
+         # 2.3.10.6 (L1) Configure 'Network access: Named Pipes that can be accessed anonymously' (DC only)
+         Network_access_Named_Pipes_that_can_be_accessed_anonymously = ''
+         # 2.3.10.7 (L1) Configure 'Network access: Named Pipes that can be accessed anonymously' (MS only) 
+         # 2.3.10.8 (L1) Configure 'Network access: Remotely accessible registry paths' 
+         # Commented out because of bug in SecurityPolicyDSC Module https://github.com/dsccommunity/SecurityPolicyDSC/issues/83
+         #Network_access_Remotely_accessible_registry_paths = 'System\CurrentControlSet\Control\ProductOptions, System\CurrentControlSet\Control\Server Applications, SOFTWARE\Microsoft\Windows NT\CurrentVersion'
+         # 2.3.10.9 (L1) Configure 'Network access: Remotely accessible registry paths and sub-paths' 
+         # Commented out because of bug in SecurityPolicyDSC Module https://github.com/dsccommunity/SecurityPolicyDSC/issues/83
+         #Network_access_Remotely_accessible_registry_paths_and_subpaths = 'System\CurrentControlSet\Control\Print\Printers, System\CurrentControlSet\Services\Eventlog, Software\Microsoft\OLAP Server, Software\Microsoft\Windows NT\CurrentVersion\Print, Software\Microsoft\Windows NT\CurrentVersion\Windows, System\CurrentControlSet\Control\ContentIndex, System\CurrentControlSet\Control\Terminal Server, System\CurrentControlSet\Control\Terminal Server\UserConfig, System\CurrentControlSet\Control\Terminal Server\DefaultUserConfiguration, Software\Microsoft\Windows NT\CurrentVersion\Perflib, System\CurrentControlSet\Services\SysmonLog'
+         # 2.3.10.10 (L1) Ensure 'Network access: Restrict anonymous access to Named Pipes and Shares' is set to 'Enabled' 
+         Network_access_Restrict_anonymous_access_to_Named_Pipes_and_Shares = 'Enabled' 
+         # 2.3.10.11 (L1) Ensure 'Network access: Restrict clients allowed to make remote calls to SAM' is set to 'Administrators: Remote Access: Allow' (MS only) 
+         #Network_access_Restrict_clients_allowed_to_make_remote_calls_to_SAM = 'Administrators: Remote Access: Allow'
+         Network_access_Restrict_clients_allowed_to_make_remote_calls_to_SAM = @(
+            MSFT_RestrictedRemoteSamSecurityDescriptor
+            {
+               Permission = 'Allow'
+               Identity   = 'Administrators'
+            }
+            )
+
+         # 2.3.10.12 (L1) Ensure 'Network access: Shares that can be accessed anonymously' is set to 'None' 
+         Network_access_Shares_that_can_be_accessed_anonymously = ''
+         # 2.3.10.13 (L1) Ensure 'Network access: Sharing and security model for local accounts' is set to 'Classic - local users authenticate as themselves' 
+         Network_access_Sharing_and_security_model_for_local_accounts = 'Classic - local users authenticate as themselves'
+         # 2.3.11.1 (L1) Ensure 'Network security: Allow Local System to use computer identity for NTLM' is set to 'Enabled' 
+         Network_security_Allow_Local_System_to_use_computer_identity_for_NTLM = 'Enabled'
+         # 2.3.11.2 (L1) Ensure 'Network security: Allow LocalSystem NULL session fallback' is set to 'Disabled' 
+         Network_security_Allow_LocalSystem_NULL_session_fallback = 'Disabled'
+         # 2.3.11.3 (L1) Ensure 'Network Security: Allow PKU2U authentication requests to this computer to use online identities' is set to 'Disabled' 
+         Network_security_Allow_PKU2U_authentication_requests_to_this_computer_to_use_online_identities = 'Disabled'
+         # 2.3.11.4 (L1) Ensure 'Network security: Configure encryption types allowed for Kerberos' is set to 'AES128_HMAC_SHA1, AES256_HMAC_SHA1, Future encryption types' 
+         Network_security_Configure_encryption_types_allowed_for_Kerberos = 'AES128_HMAC_SHA1','AES256_HMAC_SHA1','FUTURE'
+         # 2.3.11.5 (L1) Ensure 'Network security: Do not store LAN Manager hash value on next password change' is set to 'Enabled' 
+         Network_security_Do_not_store_LAN_Manager_hash_value_on_next_password_change = 'Enabled'
+         # 2.3.11.6 (L1) Ensure 'Network security: Force logoff when logon hours expire' is set to 'Enabled' 
+         Network_security_Force_logoff_when_logon_hours_expire = 'Enabled'
+         # 2.3.11.7 (L1) Ensure 'Network security: LAN Manager authentication level' is set to 'Send NTLMv2 response only. Refuse LM & NTLM'
+         Network_security_LAN_Manager_authentication_level = 'Send NTLMv2 responses only. Refuse LM & NTLM' 
+         # 2.3.11.8 (L1) Ensure 'Network security: LDAP client signing requirements' is set to 'Negotiate signing' or higher
+         Network_security_LDAP_client_signing_requirements = 'Negotiate signing' 
+         # 2.3.11.9 (L1) Ensure 'Network security: Minimum session security for NTLM SSP based (including secure RPC) clients' is set to 'Require NTLMv2 session security, Require 128-bit encryption' 
+         Network_security_Minimum_session_security_for_NTLM_SSP_based_including_secure_RPC_clients = 'Both options checked'
+         # 2.3.11.10 (L1) Ensure 'Network security: Minimum session security for NTLM SSP based (including secure RPC) servers' is set to 'Require NTLMv2 session security, Require 128-bit encryption' 
+         Network_security_Minimum_session_security_for_NTLM_SSP_based_including_secure_RPC_servers = 'Both options checked' 
+         # 2.3.13.1 (L1) Ensure 'Shutdown: Allow system to be shut down without having to log on' is set to 'Disabled'
+         Shutdown_Allow_system_to_be_shut_down_without_having_to_log_on = 'Disabled' 
+         # 2.3.15.1 (L1) Ensure 'System objects: Require case insensitivity for non-Windows subsystems' is set to 'Enabled'
+         System_objects_Require_case_insensitivity_for_non_Windows_subsystems = 'Enabled' 
+         # 2.3.15.2 (L1) Ensure 'System objects: Strengthen default permissions of internal system objects (e.g. Symbolic Links)' is set to 'Enabled'
+         System_objects_Strengthen_default_permissions_of_internal_system_objects_eg_Symbolic_Links = 'Enabled' 
+         # 2.3.17.1 (L1) Ensure 'User Account Control: Admin Approval Mode for the Built-in Administrator account' is set to 'Enabled' 
+         User_Account_Control_Admin_Approval_Mode_for_the_Built_in_Administrator_account = 'Enabled'
+         # 2.3.17.2 (L1) Ensure 'User Account Control: Allow UIAccess applications to prompt for elevation without using the secure desktop' is set to 'Disabled' 
+         User_Account_Control_Allow_UIAccess_applications_to_prompt_for_elevation_without_using_the_secure_desktop = 'Disabled'
+         # 2.3.17.3 (L1) Ensure 'User Account Control: Behavior of the elevation prompt for administrators in Admin Approval Mode' is set to 'Prompt for consent on the secure desktop' 
+         User_Account_Control_Behavior_of_the_elevation_prompt_for_administrators_in_Admin_Approval_Mode = 'Prompt for consent on the secure desktop'
+         # 2.3.17.4 (L1) Ensure 'User Account Control: Behavior of the elevation prompt for standard users' is set to 'Automatically deny elevation requests' 
+         User_Account_Control_Behavior_of_the_elevation_prompt_for_standard_users = 'Automatically deny elevation request'
+         # 2.3.17.5 (L1) Ensure 'User Account Control: Detect application installations and prompt for elevation' is set to 'Enabled' 
+         User_Account_Control_Detect_application_installations_and_prompt_for_elevation = 'Enabled'
+         # 2.3.17.6 (L1) Ensure 'User Account Control: Only elevate UIAccess applications that are installed in secure locations' is set to 'Enabled' 
+         User_Account_Control_Only_elevate_UIAccess_applications_that_are_installed_in_secure_locations = 'Enabled'
+         # 2.3.17.7 (L1) Ensure 'User Account Control: Run all administrators in Admin Approval Mode' is set to 'Enabled'
+         User_Account_Control_Run_all_administrators_in_Admin_Approval_Mode = 'Enabled'
+         # 2.3.17.8 (L1) Ensure 'User Account Control: Switch to the secure desktop when prompting for elevation' is set to 'Enabled' 
+         User_Account_Control_Switch_to_the_secure_desktop_when_prompting_for_elevation = 'Enabled'
+         # 2.3.17.9 (L1) Ensure 'User Account Control: Virtualize file and registry write failures to per-user locations' is set to 'Enabled'
+         User_Account_Control_Virtualize_file_and_registry_write_failures_to_per_user_locations = 'Enabled'
        }
 
        # 17.1.1 (L1) Ensure 'Audit Credential Validation' is set to 'Success and Failure'
