@@ -284,7 +284,7 @@ Configuration CIS_Fix_AAE {
          AuditFlag = 'Failure'
          }
 
-     AuditPolicySubcategory 'Audit Distribution Group Management (Success)' {
+       AuditPolicySubcategory 'Audit Distribution Group Management (Success)' {
          Name      = 'Distribution Group Management'
          Ensure    = 'Present'
          AuditFlag = 'Success'
@@ -297,14 +297,14 @@ Configuration CIS_Fix_AAE {
          AuditFlag = 'Failure'
          }
 
-     AuditPolicySubcategory 'Audit Other Account Management Events (Success)' {
+       AuditPolicySubcategory 'Audit Other Account Management Events (Success)' {
          Name      = 'Other Account Management Events'
          Ensure    = 'Present'
          AuditFlag = 'Success'
          }
 
         # 17.2.5 (L1) Ensure 'Audit Security Group Management' is set to 'Success and Failure'
-        AuditPolicySubcategory 'Audit Security Group Management (Failure)' {
+       AuditPolicySubcategory 'Audit Security Group Management (Failure)' {
             Name      = 'Security Group Management'
             Ensure    = 'Present'
             AuditFlag = 'Failure'
