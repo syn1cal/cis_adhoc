@@ -397,7 +397,7 @@ ubuntu1804cis_firewall_services:
 
 # Warning Banner Content (issue, issue.net, motd)
 ubuntu1804cis_warning_banner: |
-   Authorized uses only. All activity may be monitored and reported.
+   This computer system is for authorised use by employees and designated contractors only. By continuing to use this system you indicate your awareness of and consent to these terms and conditions of use.It is the users responsibility to LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this notice.
 # End Banner
 
 ## Section 4 Vars
