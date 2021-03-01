@@ -218,6 +218,7 @@ Configuration CIS_Enforce_User_Rights_Assignment {
     #  2.2.48 (L1) Ensure 'Take ownership of files or other objects' is set to 'Administrators'
      UserRightsAssignment Takeownershipoffilesorotherobjects {
         Policy       = 'Take_ownership_of_files_or_other_objects'
+     }
 
    }
 }
