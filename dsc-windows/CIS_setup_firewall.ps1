@@ -10,10 +10,6 @@ Configuration CIS_setup_firewall {
    Import-DscResource -ModuleName 'SecurityPolicyDsc'
 
    Node $NodeName {
-       #Source: https://github.com/PowerShell/SecurityPolicyDsc
-       SecurityOption AccountSecurityOptions {
-         Name                                   = 'AccountSecurityOptions'
-
        #  9.1.1 (L1) Ensure 'Windows Firewall: Domain: Firewall state' is set to 'On (recommended)'
        Registry 'EnableFirewallDomain' {
            Ensure      = 'Present'
@@ -248,9 +244,8 @@ Configuration CIS_setup_firewall {
           ValueData    = '1'
        }
  
-       }
+   }
 
-  }
 }
 
 CIS_setup_firewall
