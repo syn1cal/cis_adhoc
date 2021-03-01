@@ -163,13 +163,13 @@ Configuration CIS_setup_firewall {
           ValueData    = '1'
        }
 
-       #  9.3.2 (L1) Ensure 'Windows Firewall: Public: Inbound connections' is set to 'Block (default)'
+       #  9.3.2 (L1) Ensure 'Windows Firewall: Public: Inbound connections' is set to 'Allow (default)'
        Registry 'DefaultInboundActionPublic' {
           Ensure       = 'Present'
           Key          = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\PublicProfile'
           ValueName    = 'DefaultInboundAction'
           ValueType    = 'DWord'
-          ValueData    = '1'
+          ValueData    = '0'
        }
 
        #  9.3.3 (L1) Ensure 'Windows Firewall: Public: Outbound connections' is set to 'Allow (default)'
