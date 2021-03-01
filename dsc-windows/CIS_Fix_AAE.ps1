@@ -814,6 +814,14 @@ Configuration CIS_Fix_AAE {
           ValueType    = 'DWord'
           ValueData    = '1'
        }
+       #  18.4.8 (L1) Ensure 'MSS: (SafeDllSearchMode) Enable Safe DLL search mode (recommended)' is set to 'Enabled'
+       Registry 'SafeDllSearchMode' {
+         Ensure       = 'Present'
+         Key          = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SessionManager'
+         ValueName    = 'SafeDllSearchMode'
+         ValueType    = 'DWord'
+         ValueData    = '1'
+      }
 
        #  18.4.9 (L1) Ensure 'MSS: (ScreenSaverGracePeriod) The time in seconds before the screen saver grace period expires (0 recommended)' is set to 'Enabled: 5 or fewer seconds'
        Registry 'ScreenSaverGracePeriod' {
@@ -823,6 +831,25 @@ Configuration CIS_Fix_AAE {
           ValueType    = 'String'
           ValueData    = '5'
        }
+
+       #  18.4.10 (L2) Ensure 'MSS: (TcpMaxDataRetransmissions IPv6) How many times unacknowledged data is retransmitted' is set to 'Enabled: 3'
+       Registry 'TcpMaxDataRetransmissions' {
+         Ensure       = 'Present'
+         Key          = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TCPIP6\Parameters'
+         ValueName    = 'TcpMaxDataRetransmissions'
+         ValueType    = 'DWord'
+         ValueData    = '5'
+      }
+
+      #  18.4.11 (L2) Ensure 'MSS: (TcpMaxDataRetransmissions) How many times unacknowledged data is retransmitted' is set to 'Enabled: 3'
+      Registry 'TcpMaxDataRetransmissions2' {
+         Ensure       = 'Present'
+         Key          = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters'
+         ValueName    = 'TcpMaxDataRetransmissions'
+         ValueType    = 'DWord'
+         ValueData    = '5'
+      }
+
 
        #  18.4.12 (L1) Ensure 'MSS: (WarningLevel) Percentage threshold for the security event log at which the system will generate a warning' is set to 'Enabled: 90% or less'
        Registry 'WarningLevel' {
