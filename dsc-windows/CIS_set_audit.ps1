@@ -17,13 +17,6 @@ Configuration CIS_set_audit {
          # 2.3.2.2 (L1) Ensure 'Audit: Shut down system immediately if unable to log security audits' is set to 'Disabled'
          Audit_Shut_down_system_immediately_if_unable_to_log_security_audits = 'Disabled'
        }
-       # 17.1.1 (L1) Ensure 'Audit Credential Validation' is set to 'Success and Failure'
-       AuditPolicySubcategory "Audit Credential Validation (Success)"
-       {
-           Name      = 'Credential Validation'
-           Ensure    = 'Present'
-           AuditFlag = 'Success'
-       }
 
        # 17.1.1 (L1) Ensure 'Audit Credential Validation' is set to 'Success and Failure'
        AuditPolicySubcategory "Audit Credential Validation (Success)"
