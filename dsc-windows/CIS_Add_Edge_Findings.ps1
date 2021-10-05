@@ -3,6 +3,13 @@ Configuration CIS_Add_Edge_Findings {
 
    # ADR Note: this configuration must be added to the existing core configuration
    # ADR Note: or it will likely undo another
+   # ADR Note: tested on DSVM in AAE
+   # ADR Note: Admin can log in remotely and work after applying
+   # ADR Note: Users (as remote desktop users group members) can log in remotely and work after applying
+   # ADR Note: Azure run command works via portal after applying
+   # ADR Note: To Install, put the amended DSC code somewhere and run it - see above for inclusion in existing config
+   # ADR Note: .\CIS_Add_Edge_Findings.ps1
+   # ADR Note: Start-DscConfiguration -Path .\CIS_Add_Edge_Findings\  -Force -Verbose -Wait *> .\CIS_Add_Edge_Findings.log
 
    param (
        [string[]]$NodeName ='localhost'
@@ -26,7 +33,6 @@ Configuration CIS_Add_Edge_Findings {
       #  2.2.21 (L1) Ensure 'Deny access to this computer from the network' is set to 'Guests, Local account and member of Administrators group' (MS only)
        UserRightsAssignment Denyaccesstothiscomputerfromthenetwork {
           Policy       = 'Deny_access_to_this_computer_from_the_network'
-          #Identity     = 'Guests'
           Identity     = 'Guests, Local account, Administrators'
        }
 
