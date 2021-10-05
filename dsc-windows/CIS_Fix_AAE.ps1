@@ -1346,7 +1346,14 @@ Configuration CIS_Fix_AAE {
           ValueData  = '1'
        }
 
-
+       # 18.9.49.1 (L1) Ensure 'Prevent downloading of enclosures' is set to 'Enabled'
+       Registry 'DisableDownLoadingOfEnclosures' {
+         Ensure     = 'Present'
+         Key        = 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Feeds'
+         ValueName  = 'DisableEnclosureDownload'
+         ValueType  = 'DWord'
+         ValueData  = '1'
+      }
        
        #  18.9.52.1 (L1) Ensure 'Prevent the usage of OneDrive for file storage' is set to 'Enabled'
        Registry 'DisableFileSyncNGSC' {
