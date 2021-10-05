@@ -1,6 +1,8 @@
 #Configuration Definition
 Configuration CIS_Add_Edge_Findings {
 
+   # ADR Note: this configuration must be added to the existing core configuration
+   # ADR Note: or it will likely undo another
 
    param (
        [string[]]$NodeName ='localhost'
@@ -24,8 +26,8 @@ Configuration CIS_Add_Edge_Findings {
       #  2.2.21 (L1) Ensure 'Deny access to this computer from the network' is set to 'Guests, Local account and member of Administrators group' (MS only)
        UserRightsAssignment Denyaccesstothiscomputerfromthenetwork {
           Policy       = 'Deny_access_to_this_computer_from_the_network'
-          Identity     = 'Guests'
-          #Identity     = 'Guests, Local account, Administrators'
+          #Identity     = 'Guests'
+          Identity     = 'Guests, Local account, Administrators'
        }
 
       # 2.2.25 (L1) Ensure 'Deny log on through Remote Desktop Services' is set to 'Guests' (DC only)
